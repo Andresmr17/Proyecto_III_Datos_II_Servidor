@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\Proyecto_III_Datos_II_Servidor.props" />
+</Project>
