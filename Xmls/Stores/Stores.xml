@@ -15,4 +15,8 @@
     <Nombre_Store>EDIFICIO</Nombre_Store>
     <Atributos>pisos, ventanas, altura,ubicacion</Atributos>
   </Store>
+  <Store>
+    <Nombre_Store>PROFESOR</Nombre_Store>
+    <Atributos>correo,grupo,aula</Atributos>
+  </Store>
 </Stores>

@@ -9,4 +9,9 @@
     <Correo>andresmoli171@gmail.com</Correo>
     <Contraseña>andresmolina</Contraseña>
   </Usuario>
+  <Usuario>
+    <Nombre_Usuario>sarap</Nombre_Usuario>
+    <Correo>sarap12@hotmail.com</Correo>
+    <Contraseña>sarapr</Contraseña>
+  </Usuario>
 </Usuarios>
