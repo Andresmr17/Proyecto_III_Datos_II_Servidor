@@ -1,0 +1,10 @@
+<Stores>
+  <Store>
+    <Nombre_Store>ESTUDIANTE</Nombre_Store>
+    <Atributos>id, carnet, nombre</Atributos>
+  </Store>
+  <Store>
+    <Nombre_Store>CARRO</Nombre_Store>
+    <Atributos>llantas, modelo</Atributos>
+  </Store>
+</Stores>
