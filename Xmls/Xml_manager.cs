@@ -41,7 +41,7 @@ namespace Xmls
             
             }
 
-        public static void add<T>(string username, string email , string password)
+        public static void add(string username, string email , string password)
         {
             
             Console.WriteLine("Valor del nodo 'username': " + username);
@@ -52,7 +52,7 @@ namespace Xmls
         
 
             XmlDocument xmlDoc = new XmlDocument();
-            xmlDoc.Load("Users/Users.xml");
+            xmlDoc.Load("../Proyecto_III_Datos_II_Servidor/Xmls/Users/Users.xml");
 
             // Obtiene el elemento raíz
             XmlElement rootElement = xmlDoc.DocumentElement;
@@ -80,7 +80,7 @@ namespace Xmls
             rootElement.AppendChild(usuarioElement);
 
             // Guarda los cambios en el documento XML
-            xmlDoc.Save("Xml/Users/Users.xml"); 
+            xmlDoc.Save("../Proyecto_III_Datos_II_Servidor/Xmls/Users/Users.xml"); 
             
             }
         
@@ -89,7 +89,7 @@ namespace Xmls
             
             // Carga el documento XML existente de usuarios
             XmlDocument xmlDoc = new XmlDocument();
-            xmlDoc.Load("Users/Users.xml");
+            xmlDoc.Load("../Proyecto_III_Datos_II_Servidor/Xmls/Users/Users.xml");
 
             // Obtiene el elemento raíz
             XmlElement rootElement = xmlDoc.DocumentElement;

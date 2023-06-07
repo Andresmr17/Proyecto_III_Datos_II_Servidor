@@ -4,4 +4,24 @@
     <Correo>andresmolina</Correo>
     <Contraseña>andresmolina</Contraseña>
   </Usuario>
+  <Usuario>
+    <Nombre_Usuario>juan</Nombre_Usuario>
+    <Correo>andresmolina</Correo>
+    <Contraseña>andresmolina</Contraseña>
+  </Usuario>
+  <Usuario>
+    <Nombre_Usuario>warner</Nombre_Usuario>
+    <Correo>warnermolina2010@gmail.com</Correo>
+    <Contraseña>warnermolina</Contraseña>
+  </Usuario>
+  <Usuario>
+    <Nombre_Usuario>andres</Nombre_Usuario>
+    <Correo>andresmoli171@gmail.com</Correo>
+    <Contraseña>andresmolina</Contraseña>
+  </Usuario>
+  <Usuario>
+    <Nombre_Usuario>admin</Nombre_Usuario>
+    <Correo>nimmexeddeigou-3778@yopmail.com</Correo>
+    <Contraseña>adminadmin</Contraseña>
+  </Usuario>
 </Usuarios>
