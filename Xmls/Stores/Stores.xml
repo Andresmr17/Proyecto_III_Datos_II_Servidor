@@ -1,22 +1,50 @@
 <Stores>
   <Store>
+    <Nombre_Store>PERRO</Nombre_Store>
+    <Atributos>
+      <patas>
+      </patas>
+      <orejas>
+      </orejas>
+      <color>
+      </color>
+      <raza>
+      </raza>
+      <tamaño>
+      </tamaño>
+    </Atributos>
+  </Store>
+  <Store>
     <Nombre_Store>ESTUDIANTE</Nombre_Store>
-    <Atributos>id, carnet, nombre</Atributos>
+    <Atributos>
+      <carne>
+      </carne>
+      <nombre>
+      </nombre>
+      <apellido>
+      </apellido>
+    </Atributos>
   </Store>
   <Store>
     <Nombre_Store>CARRO</Nombre_Store>
-    <Atributos>llantas, modelo</Atributos>
+    <Atributos>
+      <color>
+      </color>
+      <marca>
+      </marca>
+      <llantas>
+      </llantas>
+      <puertas>
+      </puertas>
+    </Atributos>
   </Store>
   <Store>
     <Nombre_Store>ARBOL</Nombre_Store>
-    <Atributos>raiz, hojas, fruta</Atributos>
-  </Store>
-  <Store>
-    <Nombre_Store>EDIFICIO</Nombre_Store>
-    <Atributos>pisos, ventanas, altura,ubicacion</Atributos>
-  </Store>
-  <Store>
-    <Nombre_Store>PROFESOR</Nombre_Store>
-    <Atributos>correo,grupo,aula</Atributos>
+    <Atributos>
+      <raiz> </raiz>
+      <hojas> </hojas>
+      <fruta> </fruta>
+      <tamaño> </tamaño>
+    </Atributos>
   </Store>
 </Stores>

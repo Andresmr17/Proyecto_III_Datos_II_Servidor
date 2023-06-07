@@ -61,8 +61,17 @@ namespace XmlsStore
 
             //Añade los atributos del XMLStore
             XmlElement atributosElement = xmlDoc.CreateElement("Atributos");
-            atributosElement.InnerText = atributos;
+            
             storeElement.AppendChild(atributosElement);
+
+            string[] lista_atributos = atributos.Split(",");
+
+            foreach(string atributo in lista_atributos){
+                XmlElement nameAtributo = xmlDoc.CreateElement(atributo);
+                nameAtributo.InnerText = " ";
+                atributosElement.AppendChild(nameAtributo);
+            }
+
 
             // Agrega el nuevo libro al elemento raíz
             rootElement.AppendChild(storeElement);
