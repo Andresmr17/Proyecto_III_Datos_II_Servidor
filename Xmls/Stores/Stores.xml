@@ -7,4 +7,12 @@
     <Nombre_Store>CARRO</Nombre_Store>
     <Atributos>llantas, modelo</Atributos>
   </Store>
+  <Store>
+    <Nombre_Store>ARBOL</Nombre_Store>
+    <Atributos>raiz, hojas, fruta</Atributos>
+  </Store>
+  <Store>
+    <Nombre_Store>EDIFICIO</Nombre_Store>
+    <Atributos>pisos, ventanas, altura,ubicacion</Atributos>
+  </Store>
 </Stores>

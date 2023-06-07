@@ -4,4 +4,9 @@
     <Correo>luisdiegoarayaporras@hotmail.com</Correo>
     <Contraseña>LUISDIAP</Contraseña>
   </Usuario>
+  <Usuario>
+    <Nombre_Usuario>andres</Nombre_Usuario>
+    <Correo>andresmoli171@gmail.com</Correo>
+    <Contraseña>andresmolina</Contraseña>
+  </Usuario>
 </Usuarios>
