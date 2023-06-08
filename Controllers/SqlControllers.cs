@@ -69,5 +69,45 @@ namespace sqlControllers {
             return Ok();
             //return BadRequest("La sentencia es incorrecta");
         }
+
+        [HttpPost]
+        [Route("delete/{data}")]
+        public IActionResult deletetSql(string data) {
+
+            //Hay dos casos:
+                //DELETE FROM ESTUDIANTE
+                //DELETE FROM ESTUDIANTE WHERE nombre=andres ...
+
+            //Hace una lista de strings que se separan cuando hay un espacio " "
+            string[] partes_data = data.Split(" ");
+
+            int tamaño = partes_data.Length;
+
+            if (tamaño == 3){
+
+                //Selecciona el nombre de la tabla que se va a eliminar
+                string nombre_tabla = partes_data[2];
+
+                //Se trae el archivo XML
+                string xmlFilePath = "../Proyecto_III_Datos_II_Servidor/Xmls/Stores/Stores.xml";
+
+                XmlDocument xmlDoc = new XmlDocument();
+                xmlDoc.Load(xmlFilePath);
+
+                XmlNodeList storeElements = xmlDoc.SelectNodes($"//Store[Nombre_Store='{nombre_tabla}']");
+
+                foreach (XmlNode storeNode in storeElements)
+                {
+                    XmlNode parentNode = storeNode.ParentNode;
+                    parentNode.RemoveChild(storeNode);
+                }
+
+                xmlDoc.Save("../Proyecto_III_Datos_II_Servidor/Xmls/Stores/Stores.xml");
+
+                return Ok();
+            }
+
+            return Ok();
+        }
         }
 }
