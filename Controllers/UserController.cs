@@ -4,9 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 using Models;
 using System.Xml;
 
-namespace Controllers {
+namespace userControllers {
     [ApiController]
-    [Route("[controller]")]
+    [Route("user")]
     public class UserController : ControllerBase {
         [HttpPost]
         [Route("register/{username}/{email}/{password}")]

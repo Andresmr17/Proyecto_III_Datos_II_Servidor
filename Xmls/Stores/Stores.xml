@@ -41,10 +41,23 @@
   <Store>
     <Nombre_Store>ARBOL</Nombre_Store>
     <Atributos>
-      <raiz> </raiz>
-      <hojas> </hojas>
-      <fruta> </fruta>
-      <tamaño> </tamaño>
+      <raiz>
+      </raiz>
+      <hojas>
+      </hojas>
+      <fruta>
+      </fruta>
+      <tamaño>
+      </tamaño>
+    </Atributos>
+  </Store>
+  <Store>
+    <Nombre_Store>COMPUTADORA</Nombre_Store>
+    <Atributos>
+      <procesador> </procesador>
+      <ram> </ram>
+      <memoria> </memoria>
+      <gpu> </gpu>
     </Atributos>
   </Store>
 </Stores>
