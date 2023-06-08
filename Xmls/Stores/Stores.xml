@@ -2,27 +2,19 @@
   <Store>
     <Nombre_Store>PERRO</Nombre_Store>
     <Atributos>
-      <patas>
-      </patas>
-      <orejas>
-      </orejas>
-      <color>
-      </color>
-      <raza>
-      </raza>
-      <tamaño>
-      </tamaño>
+      <patas>4</patas>
+      <orejas>2</orejas>
+      <color>negro</color>
+      <raza>pitbull</raza>
+      <tamaño>mediano</tamaño>
     </Atributos>
   </Store>
   <Store>
     <Nombre_Store>ESTUDIANTE</Nombre_Store>
     <Atributos>
-      <carne>
-      </carne>
-      <nombre>
-      </nombre>
-      <apellido>
-      </apellido>
+      <carne>2020129522</carne>
+      <nombre>Andres</nombre>
+      <apellido>Molina</apellido>
     </Atributos>
   </Store>
   <Store>
@@ -54,10 +46,10 @@
   <Store>
     <Nombre_Store>COMPUTADORA</Nombre_Store>
     <Atributos>
-      <procesador> </procesador>
-      <ram> </ram>
-      <memoria> </memoria>
-      <gpu> </gpu>
+      <procesador>amd,</procesador>
+      <ram>16</ram>
+      <memoria>1000</memoria>
+      <gpu>3090</gpu>
     </Atributos>
   </Store>
 </Stores>
