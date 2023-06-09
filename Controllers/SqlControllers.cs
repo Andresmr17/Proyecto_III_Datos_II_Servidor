@@ -46,7 +46,8 @@ namespace sqlControllers {
                 XmlNodeList storeElements = xmlDoc.SelectNodes($"//Store[Nombre_Store='{nombre_tabla}']/Atributos/"+lista_atributos[i]);
                foreach (XmlElement attributeElement in storeElements)
             {
-                attributeElement.InnerText = lista_info_atributos[i];
+                XmlText textNode = xmlDoc.CreateTextNode(lista_info_atributos[i]+",");
+                attributeElement.AppendChild(textNode);
                 Console.WriteLine(lista_info_atributos[i]);
             }
             }
