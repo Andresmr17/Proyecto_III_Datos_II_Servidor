@@ -41,7 +41,7 @@ namespace sqlControllers {
                 //[2020129522,Andres,Molina]
                 string[] lista_info_atributos = info_atributos.Split(",");
 
-                string xmlFilePath = "../Proyecto_III_Datos_II_Servidor/Xmls/Stores/Stores.xml";
+                string xmlFilePath = "../Proyecto_III_Datos_II_Servidor/Xmls/Stores/"+nombre_tabla+"/"+nombre_tabla+".xml";
                 XmlDocument xmlDoc = new XmlDocument();
                 xmlDoc.Load(xmlFilePath);
 
@@ -68,12 +68,9 @@ namespace sqlControllers {
                     
                 }
 
-                xmlDoc.Save("../Proyecto_III_Datos_II_Servidor/Xmls/Stores/Stores.xml");
+                xmlDoc.Save("../Proyecto_III_Datos_II_Servidor/Xmls/Stores/"+nombre_tabla+"/"+nombre_tabla+".xml");
 
-                Console.WriteLine(lista_atributos[0]);
-                Console.WriteLine(lista_atributos[1]);
-                Console.WriteLine(lista_atributos[2]);
-                Console.WriteLine(lista_info_atributos.Length);
+                Console.WriteLine("------------------nuevo-------------------------");
                 Console.WriteLine(lista_info_atributos[0]);
                 Console.WriteLine(lista_info_atributos[1]);
                 Console.WriteLine(lista_info_atributos[2]);
@@ -106,7 +103,7 @@ namespace sqlControllers {
                     //[2020129522,Andres,Molina]
                     string[] lista_info_atributos = info_atributos.Split(",");
 
-                    string xmlFilePath = "../Proyecto_III_Datos_II_Servidor/Xmls/Stores/Stores.xml";
+                    string xmlFilePath = "../Proyecto_III_Datos_II_Servidor/Xmls/Stores/"+nombre_tabla+"/"+nombre_tabla+".xml";
                     XmlDocument xmlDoc = new XmlDocument();
                     xmlDoc.Load(xmlFilePath);
 
@@ -133,12 +130,9 @@ namespace sqlControllers {
                         
                     }
 
-                    xmlDoc.Save("../Proyecto_III_Datos_II_Servidor/Xmls/Stores/Stores.xml");
+                    xmlDoc.Save("../Proyecto_III_Datos_II_Servidor/Xmls/Stores/"+nombre_tabla+"/"+nombre_tabla+".xml");
 
-                    Console.WriteLine(lista_atributos[0]);
-                    Console.WriteLine(lista_atributos[1]);
-                    Console.WriteLine(lista_atributos[2]);
-                    Console.WriteLine(lista_info_atributos.Length);
+                    Console.WriteLine("------------------nuevo-------------------------");
                     Console.WriteLine(lista_info_atributos[0]);
                     Console.WriteLine(lista_info_atributos[1]);
                     Console.WriteLine(lista_info_atributos[2]);

@@ -84,7 +84,6 @@ namespace Xmls
             xmlDoc.Save("../Proyecto_III_Datos_II_Servidor/Xmls/Users/Users.xml"); 
             
             }
-        
 
         public static bool verify(string nombre, string contraseña){
             

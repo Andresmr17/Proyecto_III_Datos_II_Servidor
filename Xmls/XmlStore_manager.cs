@@ -6,41 +6,44 @@ namespace XmlsStore
     {
         public static void creates(string storename, string atributos)
         {
-            // Crea un documento XML
-            XmlDocument xmlDoc = new XmlDocument();
+            //../Proyecto_III_Datos_II_Servidor/Xmls/Stores/Stores.xml
 
-            // Crea el elemento raíz "Stores"
-            XmlElement rootElement = xmlDoc.CreateElement("Stores");
-            xmlDoc.AppendChild(rootElement);
-
-            // Crea un elemento "Store"
-            XmlElement storeElement = xmlDoc.CreateElement("Store");
-            rootElement.AppendChild(storeElement);
-
-            // Añade el elemento storename + "S"
-            XmlElement storeNamePluralElement = xmlDoc.CreateElement(storename);
-            storeElement.AppendChild(storeNamePluralElement);
-
-            // Añade el elemento storename
-            
-
-            XmlAttribute atributo = xmlDoc.CreateAttribute("atributo");
-            atributo.Value = atributos;
-            storeNamePluralElement.Attributes.Append(atributo);
-
-            // Crea los elementos de los atributos
-            /*
-            string[] lista_atributos = atributos.Split(",");
-            foreach (string atributo in lista_atributos)
+            string rutaCarpeta = "../Proyecto_III_Datos_II_Servidor/Xmls/Stores/"+storename;
+            if (!Directory.Exists(rutaCarpeta))
             {
-                XmlElement atributoElement = xmlDoc.CreateElement(atributo);
-                atributoElement.InnerText = " ";
-                storeNameElement.AppendChild(atributoElement);
-            }
-            */
+                // Crear la carpeta
+                Directory.CreateDirectory(rutaCarpeta);
+                Console.WriteLine("Carpeta creada con éxito.");
 
-            // Guarda el documento XML en un archivo
-            xmlDoc.Save("../Proyecto_III_Datos_II_Servidor/Xmls/Stores/Stores.xml");
+                // Crea un documento XML
+                XmlDocument xmlDoc = new XmlDocument();
+
+                // Crea el elemento raíz "Stores"
+                XmlElement rootElement = xmlDoc.CreateElement("Stores");
+                xmlDoc.AppendChild(rootElement);
+
+                // Crea un elemento "Store"
+                XmlElement storeElement = xmlDoc.CreateElement("Store");
+                rootElement.AppendChild(storeElement);
+
+                // Añade el elemento storename + "S"
+                XmlElement storeNamePluralElement = xmlDoc.CreateElement(storename);
+                storeElement.AppendChild(storeNamePluralElement);
+
+                // Añade el elemento storename
+                
+
+                XmlAttribute atributo = xmlDoc.CreateAttribute("atributo");
+                atributo.Value = atributos;
+                storeNamePluralElement.Attributes.Append(atributo);
+
+                // Guarda el documento XML en un archivo
+                xmlDoc.Save("../Proyecto_III_Datos_II_Servidor/Xmls/Stores/"+storename+"/"+storename+".xml");
+            }
+            else
+            {
+                Console.WriteLine("La carpeta ya existe.");
+            }
         }
 
         public static void add(string storename, string atributos)
@@ -65,20 +68,6 @@ namespace XmlsStore
             XmlAttribute atributo = xmlDoc.CreateAttribute("atributo");
             atributo.Value = atributos;
             storeNamePluralElement.Attributes.Append(atributo);
-
-            
-
-            // Crea los elementos de los atributos
-            /*
-            string[] lista_atributos = atributos.Split(",");
-            foreach (string atributo in lista_atributos)
-            {
-                XmlElement atributoElement = xmlDoc.CreateElement(atributo);
-                atributoElement.InnerText = " ";
-                storeNameElement.AppendChild(atributoElement);
-            }
-            */
-            
 
             // Guarda los cambios en el documento XML
             xmlDoc.Save("../Proyecto_III_Datos_II_Servidor/Xmls/Stores/Stores.xml");

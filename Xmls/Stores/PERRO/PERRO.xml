@@ -1,0 +1,26 @@
+<Stores>
+  <Store>
+    <PERRO atributo="patas,orejas,raza">
+      <perro>
+        <patas>4</patas>
+        <orejas>2</orejas>
+        <raza>pincher</raza>
+      </perro>
+      <perro>
+        <patas>4</patas>
+        <orejas>2</orejas>
+        <raza>Pomerania</raza>
+      </perro>
+      <perro>
+        <patas>4</patas>
+        <orejas>2</orejas>
+        <raza>Caniche</raza>
+      </perro>
+      <perro>
+        <patas>4</patas>
+        <orejas>2</orejas>
+        <raza>Beagle</raza>
+      </perro>
+    </PERRO>
+  </Store>
+</Stores>

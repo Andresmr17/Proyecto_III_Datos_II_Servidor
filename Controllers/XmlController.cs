@@ -12,7 +12,7 @@ namespace XmlsStore
         [Route("creacion/{storename}/{atributos}")]
         public IActionResult Creacion(string storename, string atributos)
         {
-            XmlStoreManager.add(storename, atributos);
+            XmlStoreManager.creates(storename, atributos);
             return Ok();
         }
 
@@ -20,19 +20,16 @@ namespace XmlsStore
         [Route("getStoreNames")]
         public IActionResult GetStoreNames()
         {
-            string xmlFilePath = "../Proyecto_III_Datos_II_Servidor/Xmls/Stores/Stores.xml";
-            XmlDocument xmlDoc = new XmlDocument();
-            xmlDoc.Load(xmlFilePath);
+            string xmlFilePath = "../Proyecto_III_Datos_II_Servidor/Xmls/Stores";
+            string[] carpetas = Directory.GetDirectories(xmlFilePath);
+            
 
             List<string> storeNames = new List<string>();
-            XmlNodeList storeElements = xmlDoc.SelectNodes("//Store/*");
-            foreach (XmlElement storeElement in storeElements)
+            foreach (string carpeta in carpetas)
             {
-                string storeName = storeElement.Name;
-                if (!storeNames.Contains(storeName))
-                {
-                    storeNames.Add(storeName);
-                }
+                string nombreCarpeta = Path.GetFileName(carpeta);
+                storeNames.Add(nombreCarpeta);
+                Console.WriteLine(nombreCarpeta);
             }
 
             return Ok(storeNames);
@@ -42,7 +39,7 @@ namespace XmlsStore
         [Route("getStoreDetails/{storeName}")]
         public IActionResult GetStoreDetails(string storeName)
         {
-            string xmlFilePath = "../Proyecto_III_Datos_II_Servidor/Xmls/Stores/Stores.xml";
+            string xmlFilePath = "../Proyecto_III_Datos_II_Servidor/Xmls/Stores/"+storeName+"/"+storeName+".xml";
 
             XmlDocument xmlDoc = new XmlDocument();
             xmlDoc.Load(xmlFilePath);
