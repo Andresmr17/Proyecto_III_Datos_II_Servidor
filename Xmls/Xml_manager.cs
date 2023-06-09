@@ -41,6 +41,7 @@ namespace Xmls
             
             }
 
+        
         public static void add(string username, string email , string password)
         {
             

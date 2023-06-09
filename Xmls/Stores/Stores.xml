@@ -1,19 +1,33 @@
 <Stores>
   <Store>
-    <CARROS>
-      <CARRO>
-        <llantas>llantas</llantas>
-        <año>año</año>
-        <modelo>modelo</modelo>
-      </CARRO>
-    </CARROS>
-    <ESTUDIANTES>
-      <ESTUDIANTE>
-        <id>id</id>
-        <carnet>carnet</carnet>
-        <nombre>nombre</nombre>
-        <apellido>apellido</apellido>
-      </ESTUDIANTE>
-    </ESTUDIANTES>
+    <PERRO atributo="patas,orejas,raza">
+      <perro>
+        <patas>4</patas>
+        <orejas>2</orejas>
+        <raza>pincher</raza>
+      </perro>
+      <perro>
+        <patas>4</patas>
+        <orejas>2</orejas>
+        <raza>pincher</raza>
+      </perro>
+      <perro>
+        <patas>4</patas>
+        <orejas>2</orejas>
+        <raza>pincher</raza>
+      </perro>
+    </PERRO>
+    <CARRO atributo="marca,color,año">
+      <carro>
+        <marca>toyota</marca>
+        <color>azul</color>
+        <año>2020</año>
+      </carro>
+      <carro>
+        <marca>nissan</marca>
+        <color>rojo</color>
+        <año>1995</año>
+      </carro>
+    </CARRO>
   </Store>
 </Stores>

@@ -18,21 +18,26 @@ namespace XmlsStore
             rootElement.AppendChild(storeElement);
 
             // Añade el elemento storename + "S"
-            XmlElement storeNamePluralElement = xmlDoc.CreateElement(storename + "S");
+            XmlElement storeNamePluralElement = xmlDoc.CreateElement(storename);
             storeElement.AppendChild(storeNamePluralElement);
 
             // Añade el elemento storename
-            XmlElement storeNameElement = xmlDoc.CreateElement(storename);
-            storeNamePluralElement.AppendChild(storeNameElement);
+            
+
+            XmlAttribute atributo = xmlDoc.CreateAttribute("atributo");
+            atributo.Value = atributos;
+            storeNamePluralElement.Attributes.Append(atributo);
 
             // Crea los elementos de los atributos
+            /*
             string[] lista_atributos = atributos.Split(",");
             foreach (string atributo in lista_atributos)
             {
                 XmlElement atributoElement = xmlDoc.CreateElement(atributo);
-                atributoElement.InnerText = atributo;
+                atributoElement.InnerText = " ";
                 storeNameElement.AppendChild(atributoElement);
             }
+            */
 
             // Guarda el documento XML en un archivo
             xmlDoc.Save("../Proyecto_III_Datos_II_Servidor/Xmls/Stores/Stores.xml");
@@ -47,27 +52,33 @@ namespace XmlsStore
             XmlElement rootElement = xmlDoc.DocumentElement;
 
             // Busca el elemento storename + "S"
-            XmlElement storeNamePluralElement = rootElement.SelectSingleNode($"Store/{storename}S") as XmlElement;
+            XmlElement storeNamePluralElement = rootElement.SelectSingleNode($"Store/{storename}") as XmlElement;
+            
 
             if (storeNamePluralElement == null)
             {
                 // Si no existe el elemento storename + "S", crea uno nuevo
-                storeNamePluralElement = xmlDoc.CreateElement(storename + "S");
+                storeNamePluralElement = xmlDoc.CreateElement(storename);
                 rootElement.SelectSingleNode("Store").AppendChild(storeNamePluralElement);
             }
 
-            // Añade el elemento storename
-            XmlElement storeNameElement = xmlDoc.CreateElement(storename);
-            storeNamePluralElement.AppendChild(storeNameElement);
+            XmlAttribute atributo = xmlDoc.CreateAttribute("atributo");
+            atributo.Value = atributos;
+            storeNamePluralElement.Attributes.Append(atributo);
+
+            
 
             // Crea los elementos de los atributos
+            /*
             string[] lista_atributos = atributos.Split(",");
             foreach (string atributo in lista_atributos)
             {
                 XmlElement atributoElement = xmlDoc.CreateElement(atributo);
-                atributoElement.InnerText = atributo;
+                atributoElement.InnerText = " ";
                 storeNameElement.AppendChild(atributoElement);
             }
+            */
+            
 
             // Guarda los cambios en el documento XML
             xmlDoc.Save("../Proyecto_III_Datos_II_Servidor/Xmls/Stores/Stores.xml");

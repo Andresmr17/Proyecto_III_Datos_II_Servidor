@@ -25,7 +25,7 @@ namespace XmlsStore
             xmlDoc.Load(xmlFilePath);
 
             List<string> storeNames = new List<string>();
-            XmlNodeList storeElements = xmlDoc.SelectNodes("//Store/*/*");
+            XmlNodeList storeElements = xmlDoc.SelectNodes("//Store/*");
             foreach (XmlElement storeElement in storeElements)
             {
                 string storeName = storeElement.Name;
@@ -47,15 +47,18 @@ namespace XmlsStore
             XmlDocument xmlDoc = new XmlDocument();
             xmlDoc.Load(xmlFilePath);
 
-            List<string> attributes = new List<string>();
-            XmlNodeList storeElements = xmlDoc.SelectNodes($"//Store/{storeName}S/{storeName}/*");
-            foreach (XmlElement attributeElement in storeElements)
-            {
-                string attributeName = attributeElement.Name;
-                attributes.Add(attributeName);
-            }
+            string minuscula = storeName.ToLower();
 
-            return Ok(attributes);
+            
+            XmlNode storeElements = xmlDoc.SelectSingleNode($"//Store/"+storeName);
+            XmlAttribute atributo = storeElements.Attributes["atributo"];
+            string valor_atributo = atributo.Value;
+            
+
+            string[] lista = valor_atributo.Split(",");
+            
+
+            return Ok(lista);
         }
     }
 }
