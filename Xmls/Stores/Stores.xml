@@ -16,6 +16,21 @@
         <orejas>2</orejas>
         <raza>pincher</raza>
       </perro>
+      <perro>
+        <patas>4</patas>
+        <orejas>2</orejas>
+        <raza>Chihuahua</raza>
+      </perro>
+      <perro>
+        <patas>4</patas>
+        <orejas>2</orejas>
+        <raza>Pomerania</raza>
+      </perro>
+      <perro>
+        <patas>4</patas>
+        <orejas>2</orejas>
+        <raza>Beagle</raza>
+      </perro>
     </PERRO>
     <CARRO atributo="marca,color,año">
       <carro>
@@ -29,5 +44,22 @@
         <año>1995</año>
       </carro>
     </CARRO>
+    <ESTUDIANTE atributo="carné,nombre,apellido">
+      <estudiante>
+        <carné>2020129522</carné>
+        <nombre>Andres</nombre>
+        <apellido>Molina</apellido>
+      </estudiante>
+      <estudiante>
+        <carné>2020745654</carné>
+        <nombre>Juan</nombre>
+        <apellido>Perez</apellido>
+      </estudiante>
+      <estudiante>
+        <carné>2020567431</carné>
+        <nombre>Jorge</nombre>
+        <apellido>Hernandez</apellido>
+      </estudiante>
+    </ESTUDIANTE>
   </Store>
 </Stores>

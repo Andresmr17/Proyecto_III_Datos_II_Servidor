@@ -10,15 +10,17 @@ namespace sqlControllers {
         [HttpPost]
         [Route("insert/{data}")]
         public IActionResult insertSql(string data) {
-
+            //Ejemplo de uso para su comprensión:
+            //data = INSERT INTO ESTUDIANTE (carne,nombre,apellido) VALUES (2020129522,Andres,Molina) (2020129522,Andres,Molina)  
             
-            //Ejemplo de uso para su comprensión: INSERT INTO ESTUDIANTE (carne,nombre,apellido) VALUES (2020129522,Andres,Molina)
 
             //Hace una lista de strings que se separan cuando hay un espacio " "
+            //[INSERT,INTO,ESTUDIANTE,(carne,nombre,apellido),VALUES,(2020129522,Andres,Molina)]
             string[] partes_data = data.Split(" ");
 
             int tamaño = partes_data.Length;
 
+            //verifica si solo se quiere hacer un insert en una tabla
             if (tamaño == 6){
                 //Selecciona el nombre de la tabla
                 string nombre_tabla = partes_data[2];
@@ -66,34 +68,6 @@ namespace sqlControllers {
                     
                 }
 
-                
-
-
-
-                /*
-
-                foreach (XmlNode storeNode in storeElements)
-                {
-                    // Eliminar nodos de atributos vacíos
-                    var emptyAttributeNodes = storeNode.ChildNodes.Cast<XmlNode>().Where(node => string.IsNullOrEmpty(node.InnerText.Trim())).ToList();
-                    foreach (var emptyAttributeNode in emptyAttributeNodes)
-                    {
-                        storeNode.RemoveChild(emptyAttributeNode);
-                    }
-
-                    for (int i = 0; i < lista_atributos.Length; i++)
-                    {
-                        string atributo = lista_atributos[i];
-                        string valor = lista_info_atributos[i];
-
-                        XmlElement attributeElement = xmlDoc.CreateElement(atributo);
-                        XmlText textNode = xmlDoc.CreateTextNode(valor);
-                        attributeElement.AppendChild(textNode);
-                        storeNode.AppendChild(attributeElement);
-                    }
-                }
-                */
-
                 xmlDoc.Save("../Proyecto_III_Datos_II_Servidor/Xmls/Stores/Stores.xml");
 
                 Console.WriteLine(lista_atributos[0]);
@@ -106,8 +80,69 @@ namespace sqlControllers {
 
                 return Ok();
             }
+
+            //Es para cuando se quieran hacer mas de un insert en un mismo script
             else{
 
+                int limite = tamaño;
+
+                for(int i = 5; i < tamaño; i++){
+                    //Selecciona el nombre de la tabla
+                    string nombre_tabla = partes_data[2];
+
+                    //Selecciona los atributos que se van a agregar quitandole los parentesis
+                    //carne,nombre,apellido
+                    string atributos = partes_data[3].Substring(1, partes_data[3].Length - 2);
+
+                    //Hace una lista de string usando los atributos
+                    //[carne,nombre,apellido]
+                    string[] lista_atributos = atributos.Split(",");
+
+                    //Selecciona la informacion de los atributos quitandole los parentesis
+                    //2020129522,Andres,Molina
+                    string info_atributos = partes_data[i].Substring(1, partes_data[i].Length - 2);
+
+                    //Hace una lista de string usando los atributos
+                    //[2020129522,Andres,Molina]
+                    string[] lista_info_atributos = info_atributos.Split(",");
+
+                    string xmlFilePath = "../Proyecto_III_Datos_II_Servidor/Xmls/Stores/Stores.xml";
+                    XmlDocument xmlDoc = new XmlDocument();
+                    xmlDoc.Load(xmlFilePath);
+
+                    XmlNode storeElements = xmlDoc.SelectSingleNode($"//Store/"+nombre_tabla);
+
+                    XmlElement nodo = xmlDoc.CreateElement(nombre_tabla.ToLower());
+                    storeElements.AppendChild(nodo);
+
+                    XmlAttribute atributo = storeElements.Attributes["atributo"];
+                    string valor_atributo = atributo.Value;
+                    Console.WriteLine(valor_atributo);
+
+                    string[] lista = valor_atributo.Split(",");
+
+
+
+                    for(int j = 0; j < lista_info_atributos.Length; j++){
+                        
+                        XmlElement elemento = xmlDoc.CreateElement(lista[j]);
+                        XmlText textNode = xmlDoc.CreateTextNode(lista_info_atributos[j]);
+                        elemento.AppendChild(textNode);
+                        
+                        nodo.AppendChild(elemento);
+                        
+                    }
+
+                    xmlDoc.Save("../Proyecto_III_Datos_II_Servidor/Xmls/Stores/Stores.xml");
+
+                    Console.WriteLine(lista_atributos[0]);
+                    Console.WriteLine(lista_atributos[1]);
+                    Console.WriteLine(lista_atributos[2]);
+                    Console.WriteLine(lista_info_atributos.Length);
+                    Console.WriteLine(lista_info_atributos[0]);
+                    Console.WriteLine(lista_info_atributos[1]);
+                    Console.WriteLine(lista_info_atributos[2]);
+                    }
             }
             
             return Ok();
