@@ -1,20 +1,19 @@
-using XmlsStore;
-using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Xml;
+using Microsoft.AspNetCore.Mvc;
 
-namespace xmlControllers {
+namespace XmlsStore
+{
     [ApiController]
     [Route("xml")]
-    public class UserController : ControllerBase {
-
+    public class XmlController : ControllerBase
+    {
         [HttpPost]
         [Route("creacion/{storename}/{atributos}")]
-        public IActionResult creacion(string storename, string atributos) {
-            
-            XmlStore_manager.add(storename, atributos);
-            //JSONManager.AddToJSON<User>(newUser, "../tuto-api/DB/Entities/User.json");
+        public IActionResult Creacion(string storename, string atributos)
+        {
+            XmlStoreManager.add(storename, atributos);
             return Ok();
-            //return BadRequest("La sentencia es incorrecta");
         }
 
         [HttpGet]
@@ -22,17 +21,18 @@ namespace xmlControllers {
         public IActionResult GetStoreNames()
         {
             string xmlFilePath = "../Proyecto_III_Datos_II_Servidor/Xmls/Stores/Stores.xml";
-
             XmlDocument xmlDoc = new XmlDocument();
             xmlDoc.Load(xmlFilePath);
 
             List<string> storeNames = new List<string>();
-            XmlNodeList storeElements = xmlDoc.SelectNodes("//Store");
+            XmlNodeList storeElements = xmlDoc.SelectNodes("//Store/*/*");
             foreach (XmlElement storeElement in storeElements)
             {
-                XmlNode storeNameNode = storeElement.SelectSingleNode("Nombre_Store");
-                string storeName = storeNameNode.InnerText;
-                storeNames.Add(storeName);
+                string storeName = storeElement.Name;
+                if (!storeNames.Contains(storeName))
+                {
+                    storeNames.Add(storeName);
+                }
             }
 
             return Ok(storeNames);
@@ -48,7 +48,7 @@ namespace xmlControllers {
             xmlDoc.Load(xmlFilePath);
 
             List<string> attributes = new List<string>();
-            XmlNodeList storeElements = xmlDoc.SelectNodes($"//Store[Nombre_Store='{storeName}']/Atributos/*");
+            XmlNodeList storeElements = xmlDoc.SelectNodes($"//Store/{storeName}S/{storeName}/*");
             foreach (XmlElement attributeElement in storeElements)
             {
                 string attributeName = attributeElement.Name;

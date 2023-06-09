@@ -1,89 +1,80 @@
 using System.Xml;
+
 namespace XmlsStore
 {
-    
-    public class XmlStore_manager
+    public class XmlStoreManager
     {
-        
         public static void creates(string storename, string atributos)
         {
-            
             // Crea un documento XML
             XmlDocument xmlDoc = new XmlDocument();
 
-            // Crea el elemento raíz
+            // Crea el elemento raíz "Stores"
             XmlElement rootElement = xmlDoc.CreateElement("Stores");
             xmlDoc.AppendChild(rootElement);
 
-            // Crea un XMLStore
+            // Crea un elemento "Store"
             XmlElement storeElement = xmlDoc.CreateElement("Store");
             rootElement.AppendChild(storeElement);
 
-            // Añade el nombre del XMLStore
-            XmlElement nameElement = xmlDoc.CreateElement("Nombre_Store");
-            nameElement.InnerText = storename;
-            storeElement.AppendChild(nameElement);
+            // Añade el elemento storename + "S"
+            XmlElement storeNamePluralElement = xmlDoc.CreateElement(storename + "S");
+            storeElement.AppendChild(storeNamePluralElement);
 
-            //Añade los atributos del XMLStore
-            XmlElement atributosElement = xmlDoc.CreateElement("Atributos");
-            atributosElement.InnerText = atributos;
-            storeElement.AppendChild(atributosElement);
+            // Añade el elemento storename
+            XmlElement storeNameElement = xmlDoc.CreateElement(storename);
+            storeNamePluralElement.AppendChild(storeNameElement);
+
+            // Crea los elementos de los atributos
+            string[] lista_atributos = atributos.Split(",");
+            foreach (string atributo in lista_atributos)
+            {
+                XmlElement atributoElement = xmlDoc.CreateElement(atributo);
+                atributoElement.InnerText = atributo;
+                storeNameElement.AppendChild(atributoElement);
+            }
 
             // Guarda el documento XML en un archivo
             xmlDoc.Save("../Proyecto_III_Datos_II_Servidor/Xmls/Stores/Stores.xml");
-            //../tuto-api/DB/Entities/User.json
-            
-            
-            }
+        }
 
         public static void add(string storename, string atributos)
         {
-            
-            Console.WriteLine("Valor del nodo 'storename': " + storename);
-
-            Console.WriteLine("Valor del nodo 'atributo': " + atributos);
-        
-
             XmlDocument xmlDoc = new XmlDocument();
             xmlDoc.Load("../Proyecto_III_Datos_II_Servidor/Xmls/Stores/Stores.xml");
 
-            // Obtiene el elemento raíz
+            // Obtiene el elemento raíz "Stores"
             XmlElement rootElement = xmlDoc.DocumentElement;
 
-            // Crea un XMLStore
-            XmlElement storeElement = xmlDoc.CreateElement("Store");
-            rootElement.AppendChild(storeElement);
+            // Busca el elemento storename + "S"
+            XmlElement storeNamePluralElement = rootElement.SelectSingleNode($"Store/{storename}S") as XmlElement;
 
-            // Añade el nombre del XMLStore
-            XmlElement nameElement = xmlDoc.CreateElement("Nombre_Store");
-            nameElement.InnerText = storename;
-            storeElement.AppendChild(nameElement);
-
-            //Añade los atributos del XMLStore
-            XmlElement atributosElement = xmlDoc.CreateElement("Atributos");
-            
-            storeElement.AppendChild(atributosElement);
-
-            string[] lista_atributos = atributos.Split(",");
-
-            foreach(string atributo in lista_atributos){
-                XmlElement nameAtributo = xmlDoc.CreateElement(atributo);
-                nameAtributo.InnerText = " ";
-                atributosElement.AppendChild(nameAtributo);
+            if (storeNamePluralElement == null)
+            {
+                // Si no existe el elemento storename + "S", crea uno nuevo
+                storeNamePluralElement = xmlDoc.CreateElement(storename + "S");
+                rootElement.SelectSingleNode("Store").AppendChild(storeNamePluralElement);
             }
 
+            // Añade el elemento storename
+            XmlElement storeNameElement = xmlDoc.CreateElement(storename);
+            storeNamePluralElement.AppendChild(storeNameElement);
 
-            // Agrega el nuevo libro al elemento raíz
-            rootElement.AppendChild(storeElement);
+            // Crea los elementos de los atributos
+            string[] lista_atributos = atributos.Split(",");
+            foreach (string atributo in lista_atributos)
+            {
+                XmlElement atributoElement = xmlDoc.CreateElement(atributo);
+                atributoElement.InnerText = atributo;
+                storeNameElement.AppendChild(atributoElement);
+            }
 
             // Guarda los cambios en el documento XML
-            xmlDoc.Save("../Proyecto_III_Datos_II_Servidor/Xmls/Stores/Stores.xml"); 
-            
-            }
-        
+            xmlDoc.Save("../Proyecto_III_Datos_II_Servidor/Xmls/Stores/Stores.xml");
+        }
 
-        public static bool verify(string name, string atributo){
-            
+        public static bool verify(string name, string atributo)
+        {
             // Carga el documento XML existente de usuarios
             XmlDocument xmlDoc = new XmlDocument();
             xmlDoc.Load("../Proyecto_III_Datos_II_Servidor/Xmls/Stores/Stores.xml");
@@ -99,25 +90,21 @@ namespace XmlsStore
 
         public static bool verifyAux(XmlElement parentElement, string nombre_store, string atributos)
         {
-            // Busca todos los elementos "Usuario" descendientes del elemento padre
-            XmlNodeList usuariosElements = parentElement.SelectNodes("//Store");
+            // Busca todos los elementos "Store" descendientes del elemento padre
+            XmlNodeList storeElements = parentElement.SelectNodes("//Store");
 
-            // Itera sobre los elementos "Usuario" y verifica el nombre
-            foreach (XmlElement storeElement in usuariosElements)
+            // Itera sobre los elementos "Store" y verifica el nombre
+            foreach (XmlElement storeElement in storeElements)
             {
-                //Obtiene el nombre de usuario del elemento en el que se encuentra
-                XmlElement nameElement = storeElement.SelectSingleNode("Nombre_Store") as XmlElement;
-
-                //Obtiene la contraseña del elemento en el que se encuentra
-                XmlElement atributosElement = storeElement.SelectSingleNode("Atributos") as XmlElement;
+                //Obtiene el nombre de store del elemento en el que se encuentra
+                XmlElement nameElement = storeElement.SelectSingleNode($"{nombre_store}/{atributos}") as XmlElement;
 
                 //Verifica si son iguales
-                if (nameElement != null && nameElement.InnerText == nombre_store && atributosElement != null && atributosElement.InnerText == atributos)
+                if (nameElement != null && nameElement.Name == atributos)
                 {
                     return true;
                 }
             }
-
             return false;
         }
     }

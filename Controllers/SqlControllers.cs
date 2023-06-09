@@ -10,19 +10,22 @@ namespace sqlControllers {
         [HttpPost]
         [Route("insert/{data}")]
         public IActionResult insertSql(string data) {
-            //INSERT INTO ESTUDIANTE (carne,nombre,apellido) VALUES (2020129522,Andres,Molina)
-            //DELETE FROM ESTUDIANTE
-            //DELETE FROM ESTUDIANTE WHERE nombre=andres 
+
+            
+            //Ejemplo de uso para su comprensión: INSERT INTO ESTUDIANTE (carne,nombre,apellido) VALUES (2020129522,Andres,Molina)
 
             //Hace una lista de strings que se separan cuando hay un espacio " "
             string[] partes_data = data.Split(" ");
 
-            //Selecciona el nombre de la tabla
+            int tamaño = partes_data.Length;
+
+            if (tamaño == 6){
+                //Selecciona el nombre de la tabla
             string nombre_tabla = partes_data[2];
 
             //Selecciona los atributos que se van a agregar quitandole los parentesis
             //carne,nombre,apellido
-            string atributos = partes_data[3].Substring(1,partes_data[3].Length -2 );
+            string atributos = partes_data[3].Substring(1, partes_data[3].Length - 2);
 
             //Hace una lista de string usando los atributos
             //[carne,nombre,apellido]
@@ -30,33 +33,40 @@ namespace sqlControllers {
 
             //Selecciona la informacion de los atributos quitandole los parentesis
             //2020129522,Andres,Molina
-            string info_atributos = partes_data[5].Substring(1,partes_data[5].Length -2 );
+            string info_atributos = partes_data[5].Substring(1, partes_data[5].Length - 2);
 
             //Hace una lista de string usando los atributos
             //[2020129522,Andres,Molina]
             string[] lista_info_atributos = info_atributos.Split(",");
 
-            
             string xmlFilePath = "../Proyecto_III_Datos_II_Servidor/Xmls/Stores/Stores.xml";
-
             XmlDocument xmlDoc = new XmlDocument();
             xmlDoc.Load(xmlFilePath);
 
-            for(int i = 0; i < lista_info_atributos.Length; i++){
-                XmlNodeList storeElements = xmlDoc.SelectNodes($"//Store[Nombre_Store='{nombre_tabla}']/Atributos/"+lista_atributos[i]);
-               foreach (XmlElement attributeElement in storeElements)
+            XmlNodeList storeElements = xmlDoc.SelectNodes($"//Store[Nombre_Store='{nombre_tabla}']/Atributos");
+
+            foreach (XmlNode storeNode in storeElements)
             {
-                XmlText textNode = xmlDoc.CreateTextNode(lista_info_atributos[i]+",");
-                attributeElement.AppendChild(textNode);
-                Console.WriteLine(lista_info_atributos[i]);
-            }
-            }
-            xmlDoc.Save("../Proyecto_III_Datos_II_Servidor/Xmls/Stores/Stores.xml"); 
+                // Eliminar nodos de atributos vacíos
+                var emptyAttributeNodes = storeNode.ChildNodes.Cast<XmlNode>().Where(node => string.IsNullOrEmpty(node.InnerText.Trim())).ToList();
+                foreach (var emptyAttributeNode in emptyAttributeNodes)
+                {
+                    storeNode.RemoveChild(emptyAttributeNode);
+                }
 
-        
-            //return Ok(attributes);
-            
+                for (int i = 0; i < lista_atributos.Length; i++)
+                {
+                    string atributo = lista_atributos[i];
+                    string valor = lista_info_atributos[i];
 
+                    XmlElement attributeElement = xmlDoc.CreateElement(atributo);
+                    XmlText textNode = xmlDoc.CreateTextNode(valor);
+                    attributeElement.AppendChild(textNode);
+                    storeNode.AppendChild(attributeElement);
+                }
+            }
+
+            xmlDoc.Save("../Proyecto_III_Datos_II_Servidor/Xmls/Stores/Stores.xml");
 
             Console.WriteLine(lista_atributos[0]);
             Console.WriteLine(lista_atributos[1]);
@@ -65,12 +75,13 @@ namespace sqlControllers {
             Console.WriteLine(lista_info_atributos[0]);
             Console.WriteLine(lista_info_atributos[1]);
             Console.WriteLine(lista_info_atributos[2]);
-            //Xml_manager.add(data);
-            //JSONManager.AddToJSON<User>(newUser, "../tuto-api/DB/Entities/User.json");
-            return Ok();
-            //return BadRequest("La sentencia es incorrecta");
-        }
 
+            return Ok();
+        }
+            
+            return Ok();
+        }
+            
         [HttpPost]
         [Route("delete/{data}")]
         public IActionResult deletetSql(string data) {
@@ -107,8 +118,112 @@ namespace sqlControllers {
 
                 return Ok();
             }
+            else if (tamaño == 5)
+            {
 
-            return Ok();
+                string nombre_tabla = partes_data[2];
+                string atributos = partes_data[3].Substring(1, partes_data[3].Length - 2);
+                string[] lista_atributos = atributos.Split(",");
+                string info_atributos = partes_data[5].Substring(1, partes_data[5].Length - 2);
+                string[] lista_info_atributos = info_atributos.Split(",");
+
+                string xmlFilePath = "../Proyecto_III_Datos_II_Servidor/Xmls/Stores/Stores.xml";
+                XmlDocument xmlDoc = new XmlDocument();
+                xmlDoc.Load(xmlFilePath);
+
+                XmlNodeList storeElements = xmlDoc.SelectNodes($"//Store[Nombre_Store='{nombre_tabla}']/Atributos");
+
+                foreach (XmlNode storeNode in storeElements)
+                {
+                    // Eliminar nodos de atributos que cumplan la condición
+                    var attributeNodesToRemove = storeNode.ChildNodes.Cast<XmlNode>()
+                        .Where(node => lista_atributos.Contains(node.Name) && node.InnerText.Trim() == "condición")
+                        .ToList();
+
+                    foreach (var attributeNode in attributeNodesToRemove)
+                    {
+                        storeNode.RemoveChild(attributeNode);
+                    }
+
+                    // Eliminar nodos de atributos vacíos
+                    var emptyAttributeNodes = storeNode.ChildNodes.Cast<XmlNode>()
+                        .Where(node => string.IsNullOrEmpty(node.InnerText.Trim()))
+                        .ToList();
+
+                    foreach (var emptyAttributeNode in emptyAttributeNodes)
+                    {
+                        storeNode.RemoveChild(emptyAttributeNode);
+                    }
+
+                    for (int i = 0; i < lista_atributos.Length; i++)
+                    {
+                        string atributo = lista_atributos[i];
+                        string valor = lista_info_atributos[i];
+
+                        XmlElement attributeElement = xmlDoc.CreateElement(atributo);
+                        XmlText textNode = xmlDoc.CreateTextNode(valor);
+                        attributeElement.AppendChild(textNode);
+                        storeNode.AppendChild(attributeElement);
+                    }
+                }
+
+    xmlDoc.Save("../Proyecto_III_Datos_II_Servidor/Xmls/Stores/Stores.xml");
+
+    return Ok();
+}
+            
+            else if (tamaño == 7)
+            {
+                string nombre_tabla = partes_data[2];
+                string xmlFilePath = "../Proyecto_III_Datos_II_Servidor/Xmls/Stores/Stores.xml";
+                XmlDocument xmlDoc = new XmlDocument();
+                xmlDoc.Load(xmlFilePath);
+
+                XmlNodeList storeElements = xmlDoc.SelectNodes($"//Store[Nombre_Store='{nombre_tabla}']");
+
+                string atributos = partes_data[4].Substring(1, partes_data[4].Length - 2);
+                string[] lista_atributos = atributos.Split("=");
+                string atributo = lista_atributos[0];
+                string condicion = lista_atributos.Length > 1 ? lista_atributos[1] : string.Empty;
+
+                string atributos2 = partes_data[6].Substring(1, partes_data[6].Length - 2);
+                string[] lista_atributos2 = atributos2.Split("=");
+                string atributo2 = lista_atributos2[0];
+                string condicion2 = lista_atributos2.Length > 1 ? lista_atributos2[1] : string.Empty;
+
+                string condicional = partes_data[5];
+
+                foreach (XmlNode storeNode in storeElements)
+                {
+                    XmlNode atributosNode = storeNode.SelectSingleNode("Atributos");
+                    if (atributosNode != null)
+                    {
+                        XmlNodeList atributoElements = atributosNode.SelectNodes("*");
+                        bool cumpleCondicion = false;
+
+                        foreach (XmlNode atributoNode in atributoElements)
+                        {
+                            if ((condicional == "OR" && (atributoNode.Name == atributo || atributoNode.Name == atributo2)) ||
+                                (condicional == "AND" && (atributoNode.Name == atributo && atributoNode.Name == atributo2)))
+                            {
+                                cumpleCondicion = true;
+                                break;
+                            }
+                        }
+                        if (cumpleCondicion)
+                        {
+                            foreach (XmlNode atributoNode in atributoElements)
+                            {
+                                atributoNode.InnerText = "";
+                            }
+                        }
+                    }
+                }
+                xmlDoc.Save("../Proyecto_III_Datos_II_Servidor/Xmls/Stores/Stores.xml");
+
+                return Ok();
+            }
+           return Ok();
         }
-        }
+    }
 }

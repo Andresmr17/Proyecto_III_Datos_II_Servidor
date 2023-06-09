@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Andres\\VSCode projects\\Proyecto_III_Datos_II_Servidor\\Proyecto_III_Datos_II_Servidor.csproj": {}
+    "C:\\Users\\luis di\\Proyecto_III_Datos_II_Servidor\\Proyecto_III_Datos_II_Servidor.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Andres\\VSCode projects\\Proyecto_III_Datos_II_Servidor\\Proyecto_III_Datos_II_Servidor.csproj": {
+    "C:\\Users\\luis di\\Proyecto_III_Datos_II_Servidor\\Proyecto_III_Datos_II_Servidor.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Andres\\VSCode projects\\Proyecto_III_Datos_II_Servidor\\Proyecto_III_Datos_II_Servidor.csproj",
+        "projectUniqueName": "C:\\Users\\luis di\\Proyecto_III_Datos_II_Servidor\\Proyecto_III_Datos_II_Servidor.csproj",
         "projectName": "Proyecto_III_Datos_II_Servidor",
-        "projectPath": "C:\\Users\\Andres\\VSCode projects\\Proyecto_III_Datos_II_Servidor\\Proyecto_III_Datos_II_Servidor.csproj",
-        "packagesPath": "C:\\Users\\Andres\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Andres\\VSCode projects\\Proyecto_III_Datos_II_Servidor\\obj\\",
+        "projectPath": "C:\\Users\\luis di\\Proyecto_III_Datos_II_Servidor\\Proyecto_III_Datos_II_Servidor.csproj",
+        "packagesPath": "C:\\Users\\luis di\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\luis di\\Proyecto_III_Datos_II_Servidor\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Andres\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\luis di\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
