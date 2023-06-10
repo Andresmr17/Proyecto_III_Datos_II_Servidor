@@ -352,5 +352,197 @@ namespace sqlControllers {
             }
            return Ok();
         }
+
+        [HttpPost]
+        [Route("update/{data}")]
+        public IActionResult updateSql(string data) {
+            //Ejemplo de uso para su comprensión:
+            //data = UPDATE CARRO SET color=verde WHERE marca=toyota
+            string[] partes_data = data.Split(" ");
+
+            int tamaño = partes_data.Length;
+
+            //verifica si solo se quiere hacer un insert en una tabla
+            if (tamaño == 6){
+                //Selecciona el nombre de la tabla
+                string nombre_tabla = partes_data[1];
+
+                //Selecciono la condicion
+                string cambio = partes_data[3];
+
+                //Crea una lista con el =
+                string[] camibo_lista = cambio.Split("=");
+
+                //Selecciona el atributo a camiar
+                //[color,verde]
+                string atributo = camibo_lista[0];
+
+                //Selecciona el valor del atributo
+                //color
+                string valor_atributo = camibo_lista[1];
+
+                //Selecciono la condicion
+                //verde
+                string condicion = partes_data[5];
+
+                //Crea una lista con el =
+                //[marca,toyota]
+                string[] condicion_lista = condicion.Split("=");
+
+                //Selecciona el atributo a camiar
+                string atributo_condicion = condicion_lista[0];
+
+                //Selecciona el valor del atributo
+                string valor_atributo_condicion = condicion_lista[1];
+
+                string xmlFilePath = "../Proyecto_III_Datos_II_Servidor/Xmls/Stores/" + nombre_tabla + "/" + nombre_tabla + ".xml";
+                XmlDocument xmlDoc = new XmlDocument();
+                xmlDoc.Load(xmlFilePath);
+
+
+                // Me posiciono en el nombre de la tabla en mayuscula
+                XmlNode storeElements = xmlDoc.SelectSingleNode($"//Store/{nombre_tabla}");
+
+                
+
+                List<XmlNode> nodesToRemove = new List<XmlNode>();
+
+                foreach (XmlNode storeNode in storeElements)
+                {
+                    foreach (XmlNode storeAtributo in storeNode)
+                    {
+                        if (storeAtributo.Name == atributo_condicion && storeAtributo.InnerText == valor_atributo_condicion)
+                        {
+                            foreach(XmlNode Node in storeNode){
+                                
+                                if(Node.Name == atributo){
+                                    Console.WriteLine("entra en el ultimo foreach");
+                                    Node.InnerText = valor_atributo;
+                                }
+                            }
+                        }
+                    }
+                } 
+                xmlDoc.Save("../Proyecto_III_Datos_II_Servidor/Xmls/Stores/" + nombre_tabla + "/" + nombre_tabla + ".xml");
+
+                return Ok();                  
+            }
+
+            //data = UPDATE CARRO SET marca=ferrari WHERE marca=toyota AND/OR año=2020
+            else  
+            {
+                //UPDATE CARRO SET marca=ferrari WHERE marca=toyota AND/OR año=2020
+
+                // Selecciona el nombre de la tabla que se va a eliminar
+                string nombre_tabla = partes_data[1];
+
+                // Se obtiene lo que está dentro del primer paréntesis
+                string atributos = partes_data[3];
+
+                // Se separa cuando vea el igual, es decir, queda [marca,ferrari]
+                string[] lista_atributos = atributos.Split("=");
+
+                // Se obtiene el atributo "marca"
+                string atributo = lista_atributos[0];
+
+                // Se obtiene la condicion "ferrari"
+                string condicion_cambio = lista_atributos[1];
+
+                // Se obtiene la primera condicion
+                string atributos_condicion1 = partes_data[5];
+
+                // Se obtiene la segunda condicion
+                string atributos_condicion2 = partes_data[7];
+
+                // Se obtiene el condicional
+                string condicional = partes_data[6];
+                
+
+
+                // Se separa cuando vea el igual, es decir, queda [marca,toyota]
+                string[] lista_atributos1 = atributos_condicion1.Split("=");
+
+                // Se obtiene el atributo
+                // marca
+                string atributo1 = lista_atributos1[0];
+
+                // Se obtiene la condicion
+                // toyota
+                string valor_atributo1 = lista_atributos1[1];
+
+                // Se separa cuando vea el igual, es decir, queda [año,2020]
+                string[] lista_atributos2 = atributos_condicion2.Split("=");
+
+                // Se obtiene el atributo
+                // año
+                string atributo2 = lista_atributos2[0];
+
+                // Se obtiene la condicion
+                // 2020
+                string valor_atributo2 = lista_atributos2[1];
+
+                // Se trae el archivo XML
+                string xmlFilePath = "../Proyecto_III_Datos_II_Servidor/Xmls/Stores/" + nombre_tabla + "/" + nombre_tabla + ".xml";
+
+                XmlDocument xmlDoc = new XmlDocument();
+                xmlDoc.Load(xmlFilePath);
+
+                // DELETE FROM PERRO WHERE (raza=pomerania)
+
+                // Me posiciono en el nombre de la tabla en mayuscula
+                XmlNode storeElements = xmlDoc.SelectSingleNode($"//Store/{nombre_tabla}");
+
+                foreach (XmlNode storeNode in storeElements)
+                {
+                    
+                    
+                    if(condicional == "AND"){
+                        foreach (XmlNode storeAtributo in storeNode)
+                        {
+                            if (storeAtributo.Name == atributo1 && storeAtributo.InnerText == valor_atributo1)
+                            {
+                                foreach(XmlNode store2Atributo in storeNode){
+                                    Console.WriteLine("entra en el ultimo foreach");
+                                    if(store2Atributo.Name == atributo2 && store2Atributo.InnerText == valor_atributo2){
+                                        
+
+                                        foreach(XmlNode Node in storeNode){
+                                            
+                                
+                                            if(Node.Name == atributo){
+                                                
+                                                Node.InnerText = condicion_cambio;
+                                            }
+                                        } 
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    else if (condicional == "OR")
+                    {
+                            foreach (XmlNode storeAtributo in storeNode)
+                            {
+                                foreach(XmlNode nodeAtributo in storeAtributo){
+
+                                    // Verificar si se cumple al menos una de las condiciones
+                                    if (nodeAtributo.Name == atributo1 && nodeAtributo.InnerText == valor_atributo1)
+                                    {
+                                        nodeAtributo.InnerText = condicion_cambio;
+                                    }
+                                    else if (nodeAtributo.Name == atributo2 && nodeAtributo.InnerText == valor_atributo2)
+                                    {
+                                        nodeAtributo.InnerText = condicion_cambio;
+                                    }
+                                    }
+                            }
+                        }
+                }
+                xmlDoc.Save("../Proyecto_III_Datos_II_Servidor/Xmls/Stores/" + nombre_tabla + "/" + nombre_tabla + ".xml");
+
+                return Ok();
+            }
+
+        }
     }
 }

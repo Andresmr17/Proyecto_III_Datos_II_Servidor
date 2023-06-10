@@ -1,0 +1,24 @@
+<Stores>
+  <Store>
+    <ESTUDIANTE atributo="id,carné,nombre,apellido,edad">
+      <estudiante>
+        <id>1</id>
+        <carné>2020129522</carné>
+        <nombre>Andres</nombre>
+        <apellido>Molina</apellido>
+      </estudiante>
+      <estudiante>
+        <id>2</id>
+        <carné>2020945126</carné>
+        <nombre>Juan</nombre>
+        <apellido>Shancez</apellido>
+      </estudiante>
+      <estudiante>
+        <id>3</id>
+        <carné>202045692</carné>
+        <nombre>Luis</nombre>
+        <apellido>Perez</apellido>
+      </estudiante>
+    </ESTUDIANTE>
+  </Store>
+</Stores>
