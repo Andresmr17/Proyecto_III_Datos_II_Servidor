@@ -97,3 +97,36 @@ C:\Users\Andres\VSCode projects\Proyecto_III_Datos_II_Servidor\obj\Debug\net7.0\
 C:\Users\Andres\VSCode projects\Proyecto_III_Datos_II_Servidor\obj\Debug\net7.0\Proyecto_III_Datos_II_Servidor.pdb
 C:\Users\Andres\VSCode projects\Proyecto_III_Datos_II_Servidor\obj\Debug\net7.0\Proyecto_III_Datos_II_Servidor.genruntimeconfig.cache
 C:\Users\Andres\VSCode projects\Proyecto_III_Datos_II_Servidor\obj\Debug\net7.0\ref\Proyecto_III_Datos_II_Servidor.dll
+C:\Users\Luis\RiderProjects\Proyecto_III_Datos_II_Servidor\bin\Debug\net7.0\appsettings.Development.json
+C:\Users\Luis\RiderProjects\Proyecto_III_Datos_II_Servidor\bin\Debug\net7.0\appsettings.json
+C:\Users\Luis\RiderProjects\Proyecto_III_Datos_II_Servidor\bin\Debug\net7.0\Proyecto_III_Datos_II_Servidor.exe
+C:\Users\Luis\RiderProjects\Proyecto_III_Datos_II_Servidor\bin\Debug\net7.0\Proyecto_III_Datos_II_Servidor.deps.json
+C:\Users\Luis\RiderProjects\Proyecto_III_Datos_II_Servidor\bin\Debug\net7.0\Proyecto_III_Datos_II_Servidor.runtimeconfig.json
+C:\Users\Luis\RiderProjects\Proyecto_III_Datos_II_Servidor\bin\Debug\net7.0\Proyecto_III_Datos_II_Servidor.dll
+C:\Users\Luis\RiderProjects\Proyecto_III_Datos_II_Servidor\bin\Debug\net7.0\Proyecto_III_Datos_II_Servidor.pdb
+C:\Users\Luis\RiderProjects\Proyecto_III_Datos_II_Servidor\bin\Debug\net7.0\Microsoft.AspNetCore.OpenApi.dll
+C:\Users\Luis\RiderProjects\Proyecto_III_Datos_II_Servidor\bin\Debug\net7.0\Microsoft.OpenApi.dll
+C:\Users\Luis\RiderProjects\Proyecto_III_Datos_II_Servidor\bin\Debug\net7.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\Luis\RiderProjects\Proyecto_III_Datos_II_Servidor\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\Luis\RiderProjects\Proyecto_III_Datos_II_Servidor\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\Luis\RiderProjects\Proyecto_III_Datos_II_Servidor\obj\Debug\net7.0\Proyecto_III_Datos_II_Servidor.csproj.AssemblyReference.cache
+C:\Users\Luis\RiderProjects\Proyecto_III_Datos_II_Servidor\obj\Debug\net7.0\Proyecto_III_Datos_II_Servidor.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Luis\RiderProjects\Proyecto_III_Datos_II_Servidor\obj\Debug\net7.0\Proyecto_III_Datos_II_Servidor.AssemblyInfoInputs.cache
+C:\Users\Luis\RiderProjects\Proyecto_III_Datos_II_Servidor\obj\Debug\net7.0\Proyecto_III_Datos_II_Servidor.AssemblyInfo.cs
+C:\Users\Luis\RiderProjects\Proyecto_III_Datos_II_Servidor\obj\Debug\net7.0\Proyecto_III_Datos_II_Servidor.csproj.CoreCompileInputs.cache
+C:\Users\Luis\RiderProjects\Proyecto_III_Datos_II_Servidor\obj\Debug\net7.0\Proyecto_III_Datos_II_Servidor.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Luis\RiderProjects\Proyecto_III_Datos_II_Servidor\obj\Debug\net7.0\Proyecto_III_Datos_II_Servidor.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Luis\RiderProjects\Proyecto_III_Datos_II_Servidor\obj\Debug\net7.0\staticwebassets\msbuild.Proyecto_III_Datos_II_Servidor.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\Luis\RiderProjects\Proyecto_III_Datos_II_Servidor\obj\Debug\net7.0\staticwebassets\msbuild.build.Proyecto_III_Datos_II_Servidor.props
+C:\Users\Luis\RiderProjects\Proyecto_III_Datos_II_Servidor\obj\Debug\net7.0\staticwebassets\msbuild.buildMultiTargeting.Proyecto_III_Datos_II_Servidor.props
+C:\Users\Luis\RiderProjects\Proyecto_III_Datos_II_Servidor\obj\Debug\net7.0\staticwebassets\msbuild.buildTransitive.Proyecto_III_Datos_II_Servidor.props
+C:\Users\Luis\RiderProjects\Proyecto_III_Datos_II_Servidor\obj\Debug\net7.0\staticwebassets.pack.json
+C:\Users\Luis\RiderProjects\Proyecto_III_Datos_II_Servidor\obj\Debug\net7.0\staticwebassets.build.json
+C:\Users\Luis\RiderProjects\Proyecto_III_Datos_II_Servidor\obj\Debug\net7.0\staticwebassets.development.json
+C:\Users\Luis\RiderProjects\Proyecto_III_Datos_II_Servidor\obj\Debug\net7.0\scopedcss\bundle\Proyecto_III_Datos_II_Servidor.styles.css
+C:\Users\Luis\RiderProjects\Proyecto_III_Datos_II_Servidor\obj\Debug\net7.0\Proyecto_III_Datos_II_Servidor.csproj.CopyComplete
+C:\Users\Luis\RiderProjects\Proyecto_III_Datos_II_Servidor\obj\Debug\net7.0\Proyecto_III_Datos_II_Servidor.dll
+C:\Users\Luis\RiderProjects\Proyecto_III_Datos_II_Servidor\obj\Debug\net7.0\refint\Proyecto_III_Datos_II_Servidor.dll
+C:\Users\Luis\RiderProjects\Proyecto_III_Datos_II_Servidor\obj\Debug\net7.0\Proyecto_III_Datos_II_Servidor.pdb
+C:\Users\Luis\RiderProjects\Proyecto_III_Datos_II_Servidor\obj\Debug\net7.0\Proyecto_III_Datos_II_Servidor.genruntimeconfig.cache
+C:\Users\Luis\RiderProjects\Proyecto_III_Datos_II_Servidor\obj\Debug\net7.0\ref\Proyecto_III_Datos_II_Servidor.dll

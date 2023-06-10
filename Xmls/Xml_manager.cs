@@ -4,7 +4,6 @@ namespace Xmls
     
     public class Xml_manager
     {
-        
         public static void creates(string username, string email , string password)
         {
             
