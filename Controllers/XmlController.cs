@@ -34,8 +34,7 @@ namespace XmlsStore
 
             return Ok(storeNames);
         }
-        //aca copiar el codigo de arriba para traerme 
-        //los contenidos de los atributos
+        
         [HttpGet]
         [Route("getStoreDetails/{storeName}")]
         public IActionResult GetStoreDetails(string storeName)

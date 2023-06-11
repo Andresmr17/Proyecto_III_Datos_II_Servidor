@@ -141,7 +141,7 @@ namespace sqlControllers {
             
             return Ok();
         }
-        [HttpGet]
+        /*[HttpGet]
         [Route("select/{data}")] //este es para agarrar las tags
         //del xml store
         public IActionResult selectSql(string data) {
@@ -168,7 +168,7 @@ namespace sqlControllers {
                     return BadRequest();
                 }*/
 
-            }   
+            /*}   
             //casos 
             /*caso 1select cant n de elementos from TABLA
             caso2: selec cant n de elementos from tabla where atributo= x
@@ -176,19 +176,19 @@ namespace sqlControllers {
             //and otro atributo 
             */
 
-        }
+        /*}
         [HttpGet]
         [Route("select_texto/{data}")]
         public IActionResult selectSql(string data) {
             //aca agarro los atributos que quiero buscar
             //hay variedad de casos, evaluarlos
-        }
+        }*/
 
             
         [HttpPost]
         [Route("delete/{data}")]
         public IActionResult deletetSql(string data) {
-
+            
             //Hay tres casos:
                 //DELETE FROM ESTUDIANTE
                 //DELETE FROM ESTUDIANTE WHERE nombre=andres
@@ -225,8 +225,7 @@ namespace sqlControllers {
                 return Ok();
             }
 
-            else if (tamaño == 5)
-            {
+            else if (tamaño == 5) {
                 // Selecciona el nombre de la tabla que se va a eliminar
                 string nombre_tabla = partes_data[2];
 
@@ -256,27 +255,31 @@ namespace sqlControllers {
                 Console.WriteLine("Este es el atributo recibido: " + atributo);
                 Console.WriteLine("Este es la condición recibida: " + condicion);
 
-                List<XmlNode> nodesToRemove = new List<XmlNode>();
+                List nodesToRemove = new List();
 
                 foreach (XmlNode storeNode in storeElements)
                 {
-
                     foreach (XmlNode storeAtributo in storeNode)
                     {
                         Console.WriteLine("Este es el atributo de comparación: " + storeAtributo.Name);
                         Console.WriteLine("Este es la condición de comparación: " + storeAtributo.InnerText);
+                        
                         if (storeAtributo.Name == atributo && storeAtributo.InnerText == condicion)
                         {
-                            nodesToRemove.Add(storeNode);
+                            nodesToRemove.InsertFirst(storeNode); // Agregar a la lista personalizada
                             break; // No es necesario seguir buscando en los atributos del nodo
                         }
                     }
                 }
 
-                foreach (XmlNode node in nodesToRemove)
+                Node currentNode = nodesToRemove.GetFirst();
+
+                while (currentNode != null)
                 {
+                    XmlNode node = (XmlNode)currentNode.GetLetter();
                     XmlNode parentNode = node.ParentNode;
                     parentNode.RemoveChild(node);
+                    currentNode = currentNode.GetNext();
                 }
 
                 xmlDoc.Save("../Proyecto_III_Datos_II_Servidor/Xmls/Stores/" + nombre_tabla + "/" + nombre_tabla + ".xml");
@@ -285,7 +288,7 @@ namespace sqlControllers {
             }
             else if (tamaño == 7)
             {
-                //DELETE FROM CARRO WHERE (marca=nissa) AND (año=2020) 
+                //DELETE FROM CARRO WHERE (marca=nissan) AND (año=2020) 
 
                 // Selecciona el nombre de la tabla que se va a eliminar
                 string nombre_tabla = partes_data[2];
@@ -334,11 +337,14 @@ namespace sqlControllers {
                 Console.WriteLine("Este es el segundo atributo recibido: " + atributo2);
                 Console.WriteLine("Este es la segunda condición recibida: " + condicion2);
 
-                List<XmlNode> nodesToRemove = new List<XmlNode>();
+                List nodesToRemove = new List();
 
                 foreach (XmlNode storeNode in storeElements)
                 {
-                    if(condicional == "AND"){
+                    if (condicional == "AND")
+                    {
+                        bool removeNode = false;
+
                         foreach (XmlNode storeAtributo in storeNode)
                         {
                             Console.WriteLine("Este es el atributo de comparación: " + storeAtributo.Name);
@@ -346,54 +352,67 @@ namespace sqlControllers {
 
                             if (storeAtributo.Name == atributo && storeAtributo.InnerText == condicion)
                             {
-                                foreach(XmlNode store2Atributo in storeNode){
-                                    if(store2Atributo.Name == atributo2 && store2Atributo.InnerText == condicion2){
-                                        nodesToRemove.Add(storeNode);
+                                foreach (XmlNode store2Atributo in storeNode)
+                                {
+                                    if (store2Atributo.Name == atributo2 && store2Atributo.InnerText == condicion2)
+                                    {
+                                        removeNode = true;
                                         break; // No es necesario seguir buscando en los atributos del nodo
                                     }
                                 }
                             }
                         }
+
+                        if (removeNode)
+                        {
+                            nodesToRemove.InsertFirst(storeNode); // Agregar a la lista personalizada
+                        }
                     }
                     else if (condicional == "OR")
                     {
-                            bool removeNode = false;
+                        bool removeNode = false;
 
-                            foreach (XmlNode storeAtributo in storeNode)
+                        foreach (XmlNode storeAtributo in storeNode)
+                        {
+                            Console.WriteLine("Este es el atributo de comparación: " + storeAtributo.Name);
+                            Console.WriteLine("Este es la condición de comparación: " + storeAtributo.InnerText);
+
+                            // Verificar si se cumple al menos una de las condiciones
+                            if (storeAtributo.Name == atributo && storeAtributo.InnerText == condicion)
                             {
-                                Console.WriteLine("Este es el atributo de comparación: " + storeAtributo.Name);
-                                Console.WriteLine("Este es la condición de comparación: " + storeAtributo.InnerText);
-
-                                // Verificar si se cumple al menos una de las condiciones
-                                if (storeAtributo.Name == atributo && storeAtributo.InnerText == condicion)
-                                {
-                                    removeNode = true;
-                                    break; // No es necesario seguir buscando en los atributos del nodo
-                                }
-                                else if (storeAtributo.Name == atributo2 && storeAtributo.InnerText == condicion2)
-                                {
-                                    removeNode = true;
-                                    break; // No es necesario seguir buscando en los atributos del nodo
-                                }
+                                removeNode = true;
+                                break; // No es necesario seguir buscando en los atributos del nodo
                             }
-
-                            if (removeNode)
+                            else if (storeAtributo.Name == atributo2 && storeAtributo.InnerText == condicion2)
                             {
-                                nodesToRemove.Add(storeNode);
+                                removeNode = true;
+                                break; // No es necesario seguir buscando en los atributos del nodo
                             }
                         }
+
+                        if (removeNode)
+                        {
+                            nodesToRemove.InsertFirst(storeNode); // Agregar a la lista personalizada
+                        }
+                    }
                 }
-                foreach (XmlNode node in nodesToRemove)
+
+                Node currentNode = nodesToRemove.GetFirst();
+
+                while (currentNode != null)
                 {
+                    XmlNode node = (XmlNode)currentNode.GetLetter();
                     XmlNode parentNode = node.ParentNode;
                     parentNode.RemoveChild(node);
+                    currentNode = currentNode.GetNext();
                 }
 
                 xmlDoc.Save("../Proyecto_III_Datos_II_Servidor/Xmls/Stores/" + nombre_tabla + "/" + nombre_tabla + ".xml");
 
                 return Ok();
             }
-           return Ok();
+
+            return Ok();
         }
 
         [HttpPost]
@@ -446,10 +465,6 @@ namespace sqlControllers {
                 // Me posiciono en el nombre de la tabla en mayuscula
                 XmlNode storeElements = xmlDoc.SelectSingleNode($"//Store/{nombre_tabla}");
 
-                
-
-                List<XmlNode> nodesToRemove = new List<XmlNode>();
-
                 foreach (XmlNode storeNode in storeElements)
                 {
                     foreach (XmlNode storeAtributo in storeNode)
@@ -500,8 +515,6 @@ namespace sqlControllers {
                 // Se obtiene el condicional
                 string condicional = partes_data[6];
                 
-
-
                 // Se separa cuando vea el igual, es decir, queda [marca,toyota]
                 string[] lista_atributos1 = atributos_condicion1.Split("=");
 
