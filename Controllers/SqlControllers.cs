@@ -141,6 +141,49 @@ namespace sqlControllers {
             
             return Ok();
         }
+        [HttpGet]
+        [Route("select/{data}")] //este es para agarrar las tags
+        //del xml store
+        public IActionResult selectSql(string data) {
+            string[] partes = data.Split("");
+            int tamaño = partes.Length;
+            if(tamaño =4){ //caso 1
+                string nombre_tabla = partes[3];
+                string xmlFilePath = "../Proyecto_III_Datos_II_Servidor/Xmls/Stores/"+nombre_tabla+"/"+nombre_tabla+".xml";
+                XmlDocument xmlDoc = new XmlDocument();
+                xmlDoc.Load(xmlFilePath);
+                XmlNode storeElements = xmlDoc.SelectSingleNode($"//Store/"+nombre_tabla);
+                //la linea anterior me posiciona en las tags del xml, que diga perro
+                //me posiciona en la linea perro = atributos patas raza etc
+                XmlAttribute atributos = storeElements.Attributes["atributo"];
+                string[atributos.Length] = atributos.Split(",");
+                //agarra todos los atributos de xml store.
+                return Ok(data);
+                //hay variedad de casos
+                //por ejemplo el inner join, and , or y asi.
+                
+                
+            /*
+                else{
+                    return BadRequest();
+                }*/
+
+            }   
+            //casos 
+            /*caso 1select cant n de elementos from TABLA
+            caso2: selec cant n de elementos from tabla where atributo= x
+            //caso 3: select cant n de elementos from tabla where atributo 
+            //and otro atributo 
+            */
+
+        }
+        [HttpGet]
+        [Route("select_texto/{data}")]
+        public IActionResult selectSql(string data) {
+            //aca agarro los atributos que quiero buscar
+            //hay variedad de casos, evaluarlos
+        }
+
             
         [HttpPost]
         [Route("delete/{data}")]
