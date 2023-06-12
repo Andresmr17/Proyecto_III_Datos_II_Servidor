@@ -56,8 +56,6 @@ namespace sqlControllers {
 
                 string[] lista = valor_atributo.Split(",");
 
-
-
                 for(int i = 0; i < lista_info_atributos.Length; i++){
                     
                     XmlElement elemento = xmlDoc.CreateElement(lista[i]);
@@ -542,8 +540,6 @@ namespace sqlControllers {
 
                 XmlDocument xmlDoc = new XmlDocument();
                 xmlDoc.Load(xmlFilePath);
-
-                // DELETE FROM PERRO WHERE (raza=pomerania)
 
                 // Me posiciono en el nombre de la tabla en mayuscula
                 XmlNode storeElements = xmlDoc.SelectSingleNode($"//Store/{nombre_tabla}");

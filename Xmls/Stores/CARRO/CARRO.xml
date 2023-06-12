@@ -2,18 +2,18 @@
   <Store>
     <CARRO atributo="marca,color,año">
       <carro>
-        <marca>toyota</marca>
-        <color>azul</color>
-        <año>2040</año>
+        <marca>Nissan</marca>
+        <color>negro</color>
+        <año>1998</año>
       </carro>
       <carro>
-        <marca>ferrari</marca>
+        <marca>Ferrari</marca>
         <color>verde</color>
         <año>2018</año>
       </carro>
       <carro>
-        <marca>ferrari</marca>
-        <color>morado</color>
+        <marca>Ferrari</marca>
+        <color>verde</color>
         <año>2023</año>
       </carro>
     </CARRO>

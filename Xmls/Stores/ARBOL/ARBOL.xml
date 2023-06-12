@@ -1,0 +1,24 @@
+<Stores>
+  <Store>
+    <ARBOL atributo="fruta,hojas,raiz,años">
+      <arbol>
+        <fruta>Manzana</fruta>
+        <hojas>Verdes</hojas>
+        <raiz>Mediana</raiz>
+        <años>25</años>
+      </arbol>
+      <arbol>
+        <fruta>Pera</fruta>
+        <hojas>Verdes</hojas>
+        <raiz>Profunda</raiz>
+        <años>75</años>
+      </arbol>
+      <arbol>
+        <fruta>Naranja</fruta>
+        <hojas>Amarillas</hojas>
+        <raiz>Corta</raiz>
+        <años>7</años>
+      </arbol>
+    </ARBOL>
+  </Store>
+</Stores>
