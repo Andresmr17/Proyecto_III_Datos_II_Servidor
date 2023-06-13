@@ -11,6 +11,13 @@ namespace userControllers {
         private Hcode huffman = new Hcode();
         [HttpPost]
         [Route("register/{username}/{email}/{password}")]
+        /// <summary>
+        /// Metodo encargado de registrar a un usuario
+        /// </summary>
+        /// <param name="username"> Nombre de usuario con el que se desean registrar </param>
+        /// <param name="email"> Correo del cliente que se desea registar </param>
+        /// <param name="password"> Contraseña de la persona que se desea registrar </param>
+        /// <returns> Retorna un valor propio de la clase ControllerBase </returns>
         public IActionResult Register(string username, string email, string password) {
             //CODIGO DE ARDUINO ABAJO, DOCUMENTAR SI SE VA A PROBAR
             //SIN EL ARDUINO**************
@@ -27,13 +34,17 @@ namespace userControllers {
             huffman.clearmsg();
             //END OF CODIGO ARDUINO********************
             Xml_manager.add(username, email, password);
-            //JSONManager.AddToJSON<User>(newUser, "../tuto-api/DB/Entities/User.json");
             return Ok();
-            //return BadRequest("La sentencia es incorrecta");
         }
 
         [HttpGet]
         [Route("login/{username}/{password}")]
+        /// <summary>
+        /// Metodo encargado de verificar que verificar que existe un usuario registrado
+        /// </summary>
+        /// <param name="username"> Nombre de usuario de la persona registrada </param>
+        /// <param name="password"> Contraseña de la persona registrada </param>
+        /// <returns> Retorna un valor propio de la clase ControllerBase </returns>
         public IActionResult login(string username, string password) {
             //CODIGO DE ARDUINO ABAJO, DOCUMENTAR SI SE VA A PROBAR
             //SIN EL ARDUINO**************

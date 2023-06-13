@@ -15,6 +15,11 @@ namespace selectControllers
         
         [HttpGet]
         [Route("select/{tabla}")]
+        /// <summary>
+        /// Metodo que retorna el nombre de las tablas
+        /// </summary>
+        /// <param name="tabla"> Nombre de la tabla </param>
+        /// <returns> Retorna los nombres de las tablas </returns>
         public IActionResult GetStoreNames(string tabla)
         {
             //Ejemplo para la comprensión:
@@ -76,9 +81,15 @@ namespace selectControllers
             }return Ok(nombres);
         
         }
-//aca abajo es donde debo trajar para la data con condicionales.
+        //aca abajo es donde debo trajar para la data con condicionales.
         [HttpGet]
         [Route("getStoreinfo/{data}/{nombres}")]
+        /// <summary>
+        /// Metodo que se usa para obtener los detalles de las tablas
+        /// </summary>
+        /// <param name="data"> Es la informacion de la tabla deseada </param>
+        /// <param name="nombres"> Nombre de las tablas </param>
+        /// <returns> Retorna la informacion deseada </returns>
         public ActionResult<string[,]> GetStoreDetails(string data, string nombres)
         {
             //Obtiene el texto del cliente sin espacios

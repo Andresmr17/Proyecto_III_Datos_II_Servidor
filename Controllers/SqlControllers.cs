@@ -9,6 +9,11 @@ namespace sqlControllers {
     public class sqlController : ControllerBase {
         [HttpPost]
         [Route("insert/{data}")]
+        /// <summary>
+        /// Metodo que se encarga de insertar informacion en la tabla correspondiente
+        /// </summary>
+        /// <param name="data"> Informacion que se usa para desarrollar la logica del INSERT </param>
+        /// <returns> Retorna un valor propio de la clase ControllerBase </returns>
         public IActionResult insertSql(string data) {
             //Ejemplo de uso para su comprensión:
             //data = INSERT INTO ESTUDIANTE (carne,nombre,apellido) VALUES (2020129522,Andres,Molina) (2020129522,Andres,Molina)  
@@ -169,6 +174,11 @@ namespace sqlControllers {
             
         [HttpPost]
         [Route("delete/{data}")]
+        /// <summary>
+        /// Metodo encargado de realizar la logica del DELETE
+        /// </summary>
+        /// <param name="data"> Informacion que se usa para desarrollar la logica del DELETE </param>
+        /// <returns> Retorna un valor propio de la clase ControllerBase </returns>
         public IActionResult deletetSql(string data) {
             
             //Hay tres casos:
@@ -240,9 +250,7 @@ namespace sqlControllers {
                 {
                     foreach (XmlNode storeAtributo in storeNode)
                     {
-                        Console.WriteLine("Este es el atributo de comparación: " + storeAtributo.Name);
-                        Console.WriteLine("Este es la condición de comparación: " + storeAtributo.InnerText);
-                        
+                    
                         if (storeAtributo.Name == atributo && storeAtributo.InnerText == condicion)
                         {
                             nodesToRemove.InsertFirst(storeNode); // Agregar a la lista personalizada
@@ -385,6 +393,11 @@ namespace sqlControllers {
 
         [HttpPost]
         [Route("update/{data}")]
+        /// <summary>
+        /// Metodo encargado de desarrollar la logica del UPDATE
+        /// </summary>
+        /// <param name="data"> Informacion que se usa para desarrollar la logica del UPDATE </param>
+        /// <returns> Retorna un valor propio de la clase ControllerBase </returns>
         public IActionResult updateSql(string data) {
             //Ejemplo de uso para su comprensión:
             //data = UPDATE CARRO SET color=verde WHERE marca=toyota

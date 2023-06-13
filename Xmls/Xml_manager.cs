@@ -1,9 +1,18 @@
 using System.Xml;
 namespace Xmls
 {
-    
+    /// <summary>
+    /// Clase en la que se implementan los metodos para guardar la informacion de los usuarios en formato XML
+    /// </summary>
     public class Xml_manager
     {
+        /// <summary>
+        /// Metodo que crea un documento XML con la informacion suministrada
+        /// </summary>
+        /// <param name="username"> Representa el username de la persona a registrar </param>
+        /// <param name="email"> representa el correo de la persona a registrar </param>
+        /// <param name="password"> Representa la contraseña de la persona a registrar </param>
+        /// /// <returns> No retorna nada </returns>
         public static void creates(string username, string email , string password)
         {
             
@@ -40,7 +49,13 @@ namespace Xmls
             
             }
 
-        
+        /// <summary>
+        /// Metodo que añade la informacion de un usuario que se desea registrar al archivo XML en donde se guardan los usuarios
+        /// </summary>
+        /// <param name="username"> Representa el username de la persona a registrar </param>
+        /// <param name="email"> representa el correo de la persona a registrar </param>
+        /// <param name="password"> Representa la contraseña de la persona a registrar </param>
+        /// /// <returns> No retorna nada </returns>
         public static void add(string username, string email , string password)
         {
             
@@ -84,6 +99,12 @@ namespace Xmls
             
             }
 
+        /// <summary>
+        /// Metodo que verifica cuando se quiere iniciar sesion si existe un usuario con la contraseña insertada
+        /// </summary>
+        /// <param name="nombre"> Nombre de la persona que quiere ingresar </param>
+        /// <param name="contraseña"> Contraseña de la persona que desea ingresar </param>
+        /// <returns> Retorna un valor booleano </returns>
         public static bool verify(string nombre, string contraseña){
             
             // Carga el documento XML existente de usuarios
@@ -99,6 +120,13 @@ namespace Xmls
             return existeUsuario;
         }
 
+        /// <summary>
+        /// Metodo auxiliar que verifica la existencia de un usuario
+        /// </summary>
+        /// <param name="parentElement"> Representa la raiz del documento XML </param>
+        /// <param name="nombre"> Nombre de la persona que quiere ingresar </param>
+        /// <param name="contraseña"> Contraseña de la persona que desea ingresar </param>
+        /// <returns> Retorna un valor booleano </returns>
         public static bool verifyAux(XmlElement parentElement, string nombre_usuario, string contraseña)
         {
             // Busca todos los elementos "Usuario" descendientes del elemento padre

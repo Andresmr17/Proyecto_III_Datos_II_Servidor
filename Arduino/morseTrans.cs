@@ -2,6 +2,10 @@
 class morseTrans{//clase que hara de traductor de morse a abc
     private Nodo current; //points to the current node
     private Nodo head; //points to the first node
+
+    /// <summary>
+    /// Metodo que desarrolla la traduccion del codigo morse a español
+    /// </summary>
     public void buildTranslator(){
         //this array is an array of simbols with all the abc simbols
         //if you want to add , lets say numbers, you could, but you
@@ -48,15 +52,33 @@ class morseTrans{//clase que hara de traductor de morse a abc
         }
 
     }
+
+    /// <summary>
+    /// Metodo que llama al traducto
+    /// </summary>
+    /// <param> No tiene parametros </param>
+    /// <returns> No retorna nada </returns>
     public morseTrans(){
         head = new Nodo();
         current = head;
         buildTranslator();
     }
+
+    /// <summary>
+    /// Metodo que printea el primer nodo
+    /// </summary>
+    /// /// <param> No tiene parametros </param>
+    /// <returns> No retorna nada </returns>
     public void printFirst(){
         current=head.getRight();
         Console.WriteLine(current.getLetra());
     }
+
+    /// <summary>
+    /// Metodo que realiza la traduccion
+    /// </summary>
+    /// <param name="morsecode"> Representa el codigo en morse que se debe traducir </param>
+    /// <returns> Retorna la letra traducida </returns>
     public string translate(string morsecode){
         current = head;
         string letra="";

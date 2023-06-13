@@ -2,8 +2,18 @@ using System.Xml;
 
 namespace XmlsStore
 {
+    /// <summary>
+    /// Clase que contiene los metodos encargados de crear los XML Store
+    /// </summary>
     public class XmlStoreManager
     {
+
+        /// <summary>
+        /// Metodo que crea un documento XMl con el nombre y los atributos deseados
+        /// </summary>
+        /// <param name="storename"> Nombre del XML store </param>
+        /// <param name="atributos"> Atributos del XML store </param>
+        /// /// <returns> No retorna nada </returns>
         public static void creates(string storename, string atributos)
         {
             //../Proyecto_III_Datos_II_Servidor/Xmls/Stores/Stores.xml
@@ -46,6 +56,12 @@ namespace XmlsStore
             }
         }
 
+        /// <summary>
+        /// Metodo que inserta la informacion de los XML store
+        /// </summary>
+        /// <param name="storename"> Nombre del XML store </param>
+        /// <param name="atributos"> Atributos del XML store </param>
+        /// /// <returns> No retorna nada </returns>
         public static void add(string storename, string atributos)
         {
             XmlDocument xmlDoc = new XmlDocument();
@@ -73,6 +89,12 @@ namespace XmlsStore
             xmlDoc.Save("../Proyecto_III_Datos_II_Servidor/Xmls/Stores/Stores.xml");
         }
 
+        /// <summary>
+        /// Metodo que verifica si un XML store existe
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="atributo"></param>
+        /// <returns> Retorna un valor booleano </returns>
         public static bool verify(string name, string atributo)
         {
             // Carga el documento XML existente de usuarios
@@ -88,6 +110,13 @@ namespace XmlsStore
             return existeUsuario;
         }
 
+        /// <summary>
+        /// Metodo auxiliar que veridica si existe un XML store
+        /// </summary>
+        /// <param name="parentElement"></param>
+        /// <param name="nombre_store"></param>
+        /// <param name="atributos"></param>
+        /// <returns></returns>
         public static bool verifyAux(XmlElement parentElement, string nombre_store, string atributos)
         {
             // Busca todos los elementos "Store" descendientes del elemento padre

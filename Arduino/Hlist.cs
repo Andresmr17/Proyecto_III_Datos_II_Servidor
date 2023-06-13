@@ -1,8 +1,19 @@
+/// <summary>
+/// Clase en la que se implementan los metodos para realizar el Hoffman code 
+/// </summary>
 class Hlist{
+    
     private Hnode head;
     private Hnode? current;
 
     private int size;
+
+    /// <summary>
+    /// Metodo que inserta el primer elemento
+    /// </summary>
+    /// <param name="frequency"> Representa la frecuencia de la informacion </param>
+    /// <param name="data"> Representa la informacion a usar </param>
+    /// <returns> No retorna nada </returns>
     public void insertFirst(int frequency, char data) {
         if(size != 0){ /**si el tamaño de la lista es diferente de 0*/
             Hnode newnode = new Hnode(frequency, data); /**cree un nuevo nodo, sobrecargando la operacion new*/
@@ -16,6 +27,12 @@ class Hlist{
             size++;
         }
     }
+
+    /// <summary>
+    /// Metodo que obtiene la frecuencia
+    /// </summary>
+    /// <param> No tiene parametros </params>
+    /// <returns> Retorna el Hnode actual </returns>
     public Hnode getminorFreq(){
         Hnode current2 = head;
         current = head;
@@ -41,6 +58,12 @@ class Hlist{
         }
         return current2;
     }
+
+    /// <summary>
+    /// Metodo que se encarga de eliminar el Hnode indicado
+    /// </summary>
+    /// <param name="actual"> Representa el Hnode que se desea eliminar </param>
+    /// <returns> No retorna nada </returns>
     public void Deletes(Hnode actual){
         //el delete deberia de servir 
         current = head;
@@ -68,6 +91,12 @@ class Hlist{
             size--;
         }
     }
+
+    /// <summary>
+    /// Metodo que printea la lista
+    /// </summary>
+    /// <param> No tiene parametros </params>
+    /// <returns> No retorna nada </returns>
     public void printList(){
         current = head;
         for (int i=0;i<size;i++){
@@ -75,9 +104,23 @@ class Hlist{
             current=current.getNext();
         }
     }
+
+    /// <summary>
+    /// Es el contructor de la clase HuffmanList
+    /// </summary>
+    /// <params> No tiene parametros </params>
+    /// <returns> No tiene retornos </returns>
     public Hlist(){ //constructor de la clase HuffmanList.
         size=0;
     }
+
+    /// <summary>
+    /// Metodo que inserta el primer nodo
+    /// </summary>
+    /// <param name="frequence"> Representa la frecuencia de la informacion a comprimir </param>
+    /// <param name="left"> Representa el nodo de la izquierda </param>
+    /// <param name="right"> Representa el nodo de la derecha </param>
+    /// <returns> No tiene retornos </returns>
     public void InsertNode(int frequence , Hnode left ,Hnode right){
         Hnode newNode = new Hnode(frequence,'$' );
         newNode.insertLeft(left);
@@ -93,9 +136,21 @@ class Hlist{
         }
 
     }
+
+    /// <summary>
+    /// Metodo que obtiene el tamaño 
+    /// </summary>
+    /// <params> No tiene parametros </params>
+    /// <returns> Retorna el tamaño </returns>
     public int getSize(){
         return this.size;
     }
+
+    /// <summary>
+    /// Metodo que obtiene el primer elemento 
+    /// </summary>
+    /// <params> No tiene parametros </params>
+    /// <returns> Retorna el primer elemento </returns>
     public Hnode getFirst(){
         return head;
     }
