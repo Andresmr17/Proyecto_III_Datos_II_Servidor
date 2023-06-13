@@ -9,6 +9,10 @@ namespace selectControllers
     [Route("sqls")]
     public class selectController : ControllerBase
     {
+
+        public string[] Atributos { get; set; }
+        public string[][] Contenido { get; set; } 
+        
         [HttpGet]
         [Route("select/{tabla}")]
         public IActionResult GetStoreNames(string tabla)
@@ -114,37 +118,32 @@ namespace selectControllers
                 count++;
             }
 
-            string[,] matriz = new string[tamaño_atri, count];
+            //string[,] matriz = new string[tamaño_atri, count];
 
-            int j = 0;
+             List<List<string>> matriz = new List<List<string>>();
+
+            // ...
 
             foreach (XmlNode storeNode in nodes)
             {
+                List<string> fila = new List<string>();
+
                 foreach (XmlNode storeAtributo in storeNode)
                 {
-                    for (int i = 0; i<atributos.Length; i++){
-                        if (atributos[i] == storeAtributo.Name){
-                            Console.WriteLine("este es el valor de i: " +i);
-                            Console.WriteLine(storeAtributo.InnerText);
-                            Console.WriteLine("este es el valor de j: " +j);
-                            matriz[i, j] = storeAtributo.InnerText;
+                    for (int i = 0; i < atributos.Length; i++)
+                    {
+                        if (atributos[i] == storeAtributo.Name)
+                        {
+                            fila.Add(storeAtributo.InnerText);
                             break;
                         }
                     }
                 }
-                j++; 
-                
-            } 
-            /*for (int a = 0; a < tamaño_atri; a++)
-            {
-                for (int b = 0; b < count; b++)
-                {
-                    Console.Write(matriz[a, b]);
-                }
-            }*/
+
+                matriz.Add(fila);
+            }
 
             return Ok(matriz);
-            
         }
     }
 }
