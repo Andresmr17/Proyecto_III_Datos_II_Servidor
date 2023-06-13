@@ -68,11 +68,6 @@ namespace sqlControllers {
 
                 xmlDoc.Save("../Proyecto_III_Datos_II_Servidor/Xmls/Stores/"+nombre_tabla+"/"+nombre_tabla+".xml");
 
-                Console.WriteLine("------------------nuevo-------------------------");
-                Console.WriteLine(lista_info_atributos[0]);
-                Console.WriteLine(lista_info_atributos[1]);
-                Console.WriteLine(lista_info_atributos[2]);
-
                 return Ok();
             }
 
@@ -116,24 +111,13 @@ namespace sqlControllers {
 
                     string[] lista = valor_atributo.Split(",");
 
-
-
                     for(int j = 0; j < lista_info_atributos.Length; j++){
-                        
                         XmlElement elemento = xmlDoc.CreateElement(lista[j]);
                         XmlText textNode = xmlDoc.CreateTextNode(lista_info_atributos[j]);
                         elemento.AppendChild(textNode);
-                        
                         nodo.AppendChild(elemento);
-                        
                     }
-
                     xmlDoc.Save("../Proyecto_III_Datos_II_Servidor/Xmls/Stores/"+nombre_tabla+"/"+nombre_tabla+".xml");
-
-                    Console.WriteLine("------------------nuevo-------------------------");
-                    Console.WriteLine(lista_info_atributos[0]);
-                    Console.WriteLine(lista_info_atributos[1]);
-                    Console.WriteLine(lista_info_atributos[2]);
                     }
             }
             
@@ -250,9 +234,6 @@ namespace sqlControllers {
                 // Me posiciono en el nombre de la tabla en mayuscula
                 XmlNode storeElements = xmlDoc.SelectSingleNode($"//Store/{nombre_tabla}");
 
-                Console.WriteLine("Este es el atributo recibido: " + atributo);
-                Console.WriteLine("Este es la condición recibida: " + condicion);
-
                 List nodesToRemove = new List();
 
                 foreach (XmlNode storeNode in storeElements)
@@ -329,12 +310,6 @@ namespace sqlControllers {
                 // Me posiciono en el nombre de la tabla en mayuscula
                 XmlNode storeElements = xmlDoc.SelectSingleNode($"//Store/{nombre_tabla}");
 
-                Console.WriteLine("Este es el primer atributo recibido: " + atributo);
-                Console.WriteLine("Este es la primer condición recibida: " + condicion);
-                Console.WriteLine("Este es el condicional recibido: " + condicional);
-                Console.WriteLine("Este es el segundo atributo recibido: " + atributo2);
-                Console.WriteLine("Este es la segunda condición recibida: " + condicion2);
-
                 List nodesToRemove = new List();
 
                 foreach (XmlNode storeNode in storeElements)
@@ -345,8 +320,6 @@ namespace sqlControllers {
 
                         foreach (XmlNode storeAtributo in storeNode)
                         {
-                            Console.WriteLine("Este es el atributo de comparación: " + storeAtributo.Name);
-                            Console.WriteLine("Este es la condición de comparación: " + storeAtributo.InnerText);
 
                             if (storeAtributo.Name == atributo && storeAtributo.InnerText == condicion)
                             {
@@ -372,9 +345,6 @@ namespace sqlControllers {
 
                         foreach (XmlNode storeAtributo in storeNode)
                         {
-                            Console.WriteLine("Este es el atributo de comparación: " + storeAtributo.Name);
-                            Console.WriteLine("Este es la condición de comparación: " + storeAtributo.InnerText);
-
                             // Verificar si se cumple al menos una de las condiciones
                             if (storeAtributo.Name == atributo && storeAtributo.InnerText == condicion)
                             {
@@ -573,22 +543,29 @@ namespace sqlControllers {
                     }
                     else if (condicional == "OR")
                     {
+                        
                             foreach (XmlNode storeAtributo in storeNode)
-                            {
-                                foreach(XmlNode nodeAtributo in storeAtributo){
-
-                                    // Verificar si se cumple al menos una de las condiciones
-                                    if (nodeAtributo.Name == atributo1 && nodeAtributo.InnerText == valor_atributo1)
+                            {                             
+                                   // Verificar si se cumple al menos una de las condiciones
+                                    if (storeAtributo.Name == atributo1 && storeAtributo.InnerText == valor_atributo1)
                                     {
-                                        nodeAtributo.InnerText = condicion_cambio;
+                                        foreach(XmlNode Node in storeNode){
+                                            if(Node.Name == atributo){
+                                                Node.InnerText = condicion_cambio;
+                                            }
+                                        }
                                     }
-                                    else if (nodeAtributo.Name == atributo2 && nodeAtributo.InnerText == valor_atributo2)
+                                    else if (storeAtributo.Name == atributo2 && storeAtributo.InnerText == valor_atributo2)
                                     {
-                                        nodeAtributo.InnerText = condicion_cambio;
-                                    }
+                                        foreach(XmlNode Node in storeNode){ 
+                                            if(Node.Name == atributo){
+                                                Node.InnerText = condicion_cambio;
+                                            }
+                                        }
+                                    
                                     }
                             }
-                        }
+                    }
                 }
                 xmlDoc.Save("../Proyecto_III_Datos_II_Servidor/Xmls/Stores/" + nombre_tabla + "/" + nombre_tabla + ".xml");
 
