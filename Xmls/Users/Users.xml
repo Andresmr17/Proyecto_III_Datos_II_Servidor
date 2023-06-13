@@ -19,4 +19,9 @@
     <Correo>forthemperor@imperium.com</Correo>
     <Contraseña>0111100001011100111</Contraseña>
   </Usuario>
+  <Usuario>
+    <Nombre_Usuario>luis</Nombre_Usuario>
+    <Correo>a</Correo>
+    <Contraseña>110</Contraseña>
+  </Usuario>
 </Usuarios>
